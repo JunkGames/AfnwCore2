@@ -1,4 +1,4 @@
-package net.azisaba.afnw.afnwcore2.listeners.player.block;
+package net.azisaba.afnw.afnwcore2.listeners.block;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
