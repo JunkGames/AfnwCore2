@@ -1,0 +1,9 @@
+name: AfnwCore2
+version: '${version}'
+main: net.azisaba.afnw.afnwcore2.AfnwCore2
+api-version: 1.18
+prefix: AfnwCore2
+load: STARTUP
+authors: [ merunno, afnwteam ]
+description: That world, once again.
+website: https://github.com/AfnwTeam/AfnwCore2
