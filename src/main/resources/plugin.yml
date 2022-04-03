@@ -7,3 +7,11 @@ load: STARTUP
 authors: [ merunno, afnwteam ]
 description: That world, once again.
 website: https://github.com/AfnwTeam/AfnwCore2
+
+permissions:
+  afnw.bypass.break.crops:
+    default: op
+  afnw.bypass.break.newCrops:
+    default: op
+  afnw.bypass.break.sapling:
+    default: op
