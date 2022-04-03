@@ -1,17 +1,25 @@
 package net.azisaba.afnw.afnwcore2;
 
+import net.azisaba.afnw.afnwcore2.listeners.player.FirstPlayerJoinListener;
+import net.azisaba.afnw.afnwcore2.listeners.player.JoinListener;
+import net.azisaba.afnw.afnwcore2.listeners.player.QuitListener;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class AfnwCore2 extends JavaPlugin {
+public class AfnwCore2 extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        // register listeners
+        PluginManager pluginEvent = Bukkit.getPluginManager();
+        pluginEvent.registerEvents(new JoinListener(), this);
+        pluginEvent.registerEvents(new QuitListener(), this);
+        pluginEvent.registerEvents(new FirstPlayerJoinListener(), this);
 
+        getLogger().info("[AfnwCore2] Enabled!");
     }
 
     @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
+    public void onDisable() { getLogger().info("[AfnwCore2] Disabled!"); }
 }
