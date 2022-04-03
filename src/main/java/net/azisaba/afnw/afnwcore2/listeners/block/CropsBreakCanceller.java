@@ -21,8 +21,6 @@ import java.util.logging.Logger;
  */
 public class CropsBreakCanceller implements Listener {
 
-    //TODO: bypassで通過した際にメッセージを送る
-
     /**
      * 農作物が植えられている耕地の保護をするメソッド
      */
