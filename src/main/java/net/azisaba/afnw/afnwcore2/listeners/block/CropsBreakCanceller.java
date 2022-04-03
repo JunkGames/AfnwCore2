@@ -12,6 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockFromToEvent;
 
+import java.util.logging.Logger;
+
 /**
  * bypass permission
  * - afnw.bypass.break.crops
@@ -30,7 +32,11 @@ public class CropsBreakCanceller implements Listener {
         Block b = e.getBlock();
 
         if(!Tag.CROPS.isTagged(b.getLocation().add(0, 1, 0).getBlock().getType())) return;
-        if(p.hasPermission("afnw.bypass.break.crops")) return;
+        if(p.hasPermission("afnw.bypass.break.crops")) {
+            p.sendMessage(Component.text("農作物保護機能(crops)をbypassしました。").color(NamedTextColor.GOLD));
+            Logger.getLogger("bypass:crops").info(p.getName() + "break crops! (bypass canceller!)");
+        }
+
         e.setCancelled(true);
         p.sendMessage(Component.text("農作物が植えられている耕地を破壊することはできません。").color(NamedTextColor.RED));
     }
@@ -43,7 +49,12 @@ public class CropsBreakCanceller implements Listener {
         Player p = e.getPlayer();
         Block b = e.getBlock();
         if(!Tag.CROPS.isTagged(b.getType())) return;
-        if(p.hasPermission("afnw.bypass.break.newCrops")) return;
+        if(p.hasPermission("afnw.bypass.break.newCrops")) {
+            p.sendMessage(Component.text("農作物保護機能(newCrops)をbypassしました。").color(NamedTextColor.GOLD));
+            Logger.getLogger("bypass:newCrops").info(p.getName() + "break new crops! (bypass canceller!)");
+            return;
+        }
+
         if(!(b.getBlockData() instanceof Ageable)) {
             Ageable crop = (Ageable) b.getBlockData();
             if(crop.getMaximumAge() == crop.getAge()) return;

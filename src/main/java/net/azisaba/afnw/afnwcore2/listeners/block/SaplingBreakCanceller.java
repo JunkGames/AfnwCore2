@@ -34,7 +34,7 @@ public class SaplingBreakCanceller implements Listener {
         if(b.getType() == Material.AZALEA) return;
 
         if(p.hasPermission("afnw.bypass.break.sapling")) {
-            p.sendMessage(Component.text("苗木保護機能をbypassしました。"));
+            p.sendMessage(Component.text("苗木保護機能をbypassしました。").color(NamedTextColor.GOLD));
             Logger.getLogger("bypass:sapling").info(p.getName() + "break sapling! (bypass canceller!)");
             return;
         }
