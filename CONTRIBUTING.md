@@ -40,7 +40,7 @@ public class FirstPlayerJoinListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
-        if(p.hasPlayedBefore()) return;
+        if(!p.hasPlayedBefore()) return;
         p.sendMessage("Welcome back!");
     }
 }
