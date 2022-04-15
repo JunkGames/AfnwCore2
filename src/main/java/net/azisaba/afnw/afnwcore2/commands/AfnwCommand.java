@@ -33,6 +33,10 @@ public class AfnwCommand implements CommandExecutor {
             sender.sendMessage(Component.text("/afnwコマンドはプレイヤーのみ実行可能です。").color(NamedTextColor.RED));
             return true;
         }
+        if(!sender.hasPermission("afnw.command.afnw")) {
+            sender.sendMessage(Component.text("交換するためのパーミッションが割り当てられていないようです。").color(NamedTextColor.RED));
+            return true;
+        }
 
         Inventory inv = ((Player) sender).getInventory();
         int firstInv = inv.firstEmpty();
