@@ -63,6 +63,8 @@ public class AfnwCommand implements CommandExecutor {
         ItemStack afnwItem = new ItemStack(itemList.get(0), itemSize);
 
         try {
+            inv.remove(AfnwTicket.afnwTicket);
+
             inv.addItem(afnwItem);
             for(int i = 0; i < scaffoldSize; i++) {
                 inv.addItem(AfnwScaffold.afnwScaffold);
