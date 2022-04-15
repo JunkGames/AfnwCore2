@@ -15,3 +15,7 @@ permissions:
     default: op
   afnw.bypass.break.sapling:
     default: op
+
+commands:
+  afnw:
+    description: チケットとアイテムを交換します。
