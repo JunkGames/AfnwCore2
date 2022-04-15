@@ -35,7 +35,8 @@ public class AfnwCommand implements CommandExecutor {
         }
 
         Inventory inv = ((Player) sender).getInventory();
-        if(inv.isEmpty()) {
+        int firstInv = inv.firstEmpty();
+        if(firstInv == -1) {
             sender.sendMessage(Component.text("インベントリに空きがありません。").color(NamedTextColor.RED));
             return true;
         }
