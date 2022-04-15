@@ -49,7 +49,7 @@ public class AfnwCommand implements CommandExecutor {
         int scaffoldSize = config.getInt("vote.scaffold-size", 8);
 
         List<Material> itemList = new ArrayList<>(Arrays.asList(Material.values()));
-        itemList.removeIf(type -> isAllowed(type));
+        itemList.removeIf(type -> !isAllowed(type));
         ItemStack afnwItem = new ItemStack(itemList.get(0), itemSize);
 
         try {
@@ -67,7 +67,7 @@ public class AfnwCommand implements CommandExecutor {
     }
 
     private static boolean isAllowed(Material type) {
-        if(!type.isItem()) return true;
+        if(!type.isItem()) return false;
         return switch (type) {
             case BEDROCK, STRUCTURE_BLOCK, STRUCTURE_VOID, COMMAND_BLOCK, CHAIN_COMMAND_BLOCK, COMMAND_BLOCK_MINECART, REPEATING_COMMAND_BLOCK, BARRIER, LIGHT, JIGSAW, END_PORTAL, KNOWLEDGE_BOOK, DEBUG_STICK, BUNDLE, AIR, VOID_AIR, CAVE_AIR ->
                     false;
