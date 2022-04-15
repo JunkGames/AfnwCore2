@@ -1,6 +1,7 @@
 package net.azisaba.afnw.afnwcore2.commands;
 
 import net.azisaba.afnw.afnwcore2.util.item.AfnwScaffold;
+import net.azisaba.afnw.afnwcore2.util.item.AfnwTicket;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -42,6 +43,10 @@ public class AfnwCommand implements CommandExecutor {
         int firstInv = inv.firstEmpty();
         if(firstInv == -1) {
             sender.sendMessage(Component.text("インベントリに空きがありません。").color(NamedTextColor.RED));
+            return true;
+        }
+        if(!inv.contains(AfnwTicket.afnwTicket)) {
+            sender.sendMessage(Component.text("チケットが見つかりません。").color(NamedTextColor.RED));
             return true;
         }
 
