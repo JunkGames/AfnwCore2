@@ -9,10 +9,10 @@
 ## 開発環境
 
 - [Intellij IDEA Ultimate](https://www.jetbrains.com/idea/)
-- [Java SE Development Kit 18](https://www.oracle.com/java/technologies/javase/jdk18-archive-downloads.html)
-- Java 18
+- [Java SE Development Kit 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- Java 17
 - Gradle 7.3
-- Paper 1.18.2
+- Paper 1.17.1 (411)
 
 ## 前提プラグイン
 
