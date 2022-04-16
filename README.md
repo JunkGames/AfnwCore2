@@ -41,3 +41,8 @@ PRを提出する際は [コントリビュートガイド](./CONTRIBUTING.md) �
 - `afnw.bypass.break.crops`
 - `afnw.bypass.break.newCrops`
 - `afnw.bypass.break.sapling`
+
+### command
+
+- `/afnw`
+  - `afnw.command.afnw`
