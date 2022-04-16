@@ -16,6 +16,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,43 +31,52 @@ public class AfnwCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if(!(command.getName().equals("afnw"))) return true;
-        if(!(sender instanceof Player)) {
+        if (!(command.getName().equals("afnw"))) return true;
+        if (!(sender instanceof Player)) {
             sender.sendMessage(Component.text("/afnwコマンドはプレイヤーのみ実行可能です。").color(NamedTextColor.RED));
             return true;
         }
-        if(!sender.hasPermission("afnw.command.afnw")) {
+        if (!sender.hasPermission("afnw.command.afnw")) {
             sender.sendMessage(Component.text("交換するためのパーミッションが割り当てられていないようです。").color(NamedTextColor.RED));
             return true;
         }
 
         Inventory inv = ((Player) sender).getInventory();
         int firstInv = inv.firstEmpty();
-        if(firstInv == -1) {
+        if (firstInv == -1) {
             sender.sendMessage(Component.text("インベントリに空きがありません。").color(NamedTextColor.RED));
             return true;
         }
-        if(!inv.contains(AfnwTicket.afnwTicket)) {
-            sender.sendMessage(Component.text("チケットが見つかりません。").color(NamedTextColor.RED));
-            return true;
+        if(!sender.hasPermission("afnw.bypass.check.ticket")) {
+            if (!inv.contains(AfnwTicket.afnwTicket)) {
+                sender.sendMessage(Component.text("チケットが見つかりません。").color(NamedTextColor.RED));
+                return true;
+            }
         }
 
         FileConfiguration config = plugin.getConfig();
-        if(!(config.isInt("vote.item-size")) && !(config.isInt("vote.scaffold-size"))) {
+        if (!(config.isInt("vote.item-size")) && !(config.isInt("vote.scaffold-size"))) {
             throw new Error("configの値が数値ではありません。対象:vote> item-size, scaffold-size");
         }
 
         int itemSize = config.getInt("vote.item-size", 1);
         int scaffoldSize = config.getInt("vote.scaffold-size", 8);
 
-        List<Material> itemList = new ArrayList<>(Arrays.asList(Material.values()));
-        itemList.removeIf(type -> !isAllowed(type));
-        ItemStack afnwItem = new ItemStack(itemList.get(0), itemSize);
+        SecureRandom random;
+        ItemStack afnwItem;
+        try {
+            random = SecureRandom.getInstance("SHA1PRNG");
+            List<Material> itemList = new ArrayList<>(Arrays.asList(Material.values()));
+            itemList.removeIf(type -> !isAllowed(type));
+            afnwItem = new ItemStack(itemList.get(random.nextInt(itemList.size() - 1)), itemSize);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
 
         inv.remove(AfnwTicket.afnwTicket);
 
         inv.addItem(afnwItem);
-        for(int i = 0; i < scaffoldSize; i++) {
+        for (int i = 0; i < scaffoldSize; i++) {
             inv.addItem(AfnwScaffold.afnwScaffold);
         }
 
@@ -75,11 +86,28 @@ public class AfnwCommand implements CommandExecutor {
     }
 
     private static boolean isAllowed(Material type) {
-        if(!type.isItem()) return false;
-        return switch (type) {
-            case BEDROCK, STRUCTURE_BLOCK, STRUCTURE_VOID, COMMAND_BLOCK, CHAIN_COMMAND_BLOCK, COMMAND_BLOCK_MINECART, REPEATING_COMMAND_BLOCK, BARRIER, LIGHT, JIGSAW, END_PORTAL, KNOWLEDGE_BOOK, DEBUG_STICK, BUNDLE, AIR, VOID_AIR, CAVE_AIR ->
-                    false;
-            default -> true;
-        };
+        if (!type.isItem()) return false;
+        switch (type) {
+            case BEDROCK:
+            case STRUCTURE_BLOCK:
+            case STRUCTURE_VOID:
+            case COMMAND_BLOCK:
+            case CHAIN_COMMAND_BLOCK:
+            case COMMAND_BLOCK_MINECART:
+            case REPEATING_COMMAND_BLOCK:
+            case BARRIER:
+            case LIGHT:
+            case JIGSAW:
+            case END_PORTAL:
+            case KNOWLEDGE_BOOK:
+            case DEBUG_STICK:
+            case BUNDLE:
+            case AIR:
+            case VOID_AIR:
+            case CAVE_AIR:
+                return false;
+            default:
+                return true;
+        }
     }
 }
