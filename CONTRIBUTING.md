@@ -87,4 +87,15 @@ The `<type>` must specify each of the types listed below to convey the intent to
 
 The `BREAKING CHANGE` can also be included in commits of any type.
 
+## Permission Naming Conventions
 
+`afnw.<type>.<description>`
+
+### type
+
+The `<type>` must be one of the following
+
+- command
+  - Specify this for command permissions
+- bypass
+  - Specify this for permissions that prevent each process from being triggered by a specified player
