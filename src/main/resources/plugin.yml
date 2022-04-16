@@ -1,7 +1,7 @@
 name: AfnwCore2
 version: '${version}'
 main: net.azisaba.afnw.afnwcore2.AfnwCore2
-api-version: 1.18
+api-version: 1.17
 prefix: AfnwCore2
 load: STARTUP
 authors: [ merunno, afnwteam ]
