@@ -12,6 +12,9 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.time.Duration;
 
+/**
+ * 参加時のイベンドハンドラ
+ */
 public class JoinListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)

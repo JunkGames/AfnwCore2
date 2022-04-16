@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockFromToEvent;
 import java.util.logging.Logger;
 
 /**
+ * 農作物の保護機能
  * bypass permission
  * - afnw.bypass.break.crops
  * - afnw.bypass.break.newCrops

@@ -8,6 +8,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+/**
+ * 退出時のイベンドハンドラ
+ */
 public class QuitListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)

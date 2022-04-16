@@ -10,6 +10,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 足場ブロックの生成
+ * @param plugin AfnwCore2.java
+ */
 public record AfnwScaffold(AfnwCore2 plugin) {
 
     public static ItemStack afnwScaffold = new ItemStack(Material.SCAFFOLDING);

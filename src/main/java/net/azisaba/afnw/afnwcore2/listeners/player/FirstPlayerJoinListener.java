@@ -7,6 +7,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+/**
+ * 初参加者に対するイベンドハンドラ
+ */
 public class FirstPlayerJoinListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH)

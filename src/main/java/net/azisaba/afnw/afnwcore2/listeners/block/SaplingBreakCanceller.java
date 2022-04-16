@@ -16,8 +16,9 @@ import org.bukkit.event.block.BlockFromToEvent;
 import java.util.logging.Logger;
 
 /**
+ * 苗木を保護する機能
  * bypass permission
- * - afnw.bypass.break.sapling
+ *  * - afnw.bypass.break.sapling
  */
 public class SaplingBreakCanceller implements Listener {
 

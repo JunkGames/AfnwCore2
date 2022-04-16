@@ -21,12 +21,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class AfnwCommand implements CommandExecutor {
-
-    private final JavaPlugin plugin;
-    public AfnwCommand(JavaPlugin plugin) {
-        this.plugin = plugin;
-    }
+/**
+ * /afnw - チケットとアイテム&足場を交換する
+ * @param plugin AfnwCore2.java
+ */
+public record AfnwCommand(JavaPlugin plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -46,7 +45,7 @@ public class AfnwCommand implements CommandExecutor {
             sender.sendMessage(Component.text("インベントリに空きがありません。").color(NamedTextColor.RED));
             return true;
         }
-        if(!sender.hasPermission("afnw.bypass.check.ticket")) {
+        if (!sender.hasPermission("afnw.bypass.check.ticket")) {
             if (!inv.contains(AfnwTicket.afnwTicket)) {
                 sender.sendMessage(Component.text("チケットが見つかりません。").color(NamedTextColor.RED));
                 return true;
