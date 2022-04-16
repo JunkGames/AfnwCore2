@@ -19,6 +19,7 @@ permissions:
     default: op
   afnw.command.afnw:
     description: /afnw
+    default: not op
 
 commands:
   afnw:
