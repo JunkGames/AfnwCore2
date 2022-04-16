@@ -22,7 +22,7 @@ public class FirstPlayerJoinListener implements Listener {
                 """
                 Afnwへようこそ!
                 奈落の世界を開拓するマルチサーバーです。まず初めにチュートリアルワールドを進んでみましょう。
-                なお、アジ鯖公式Wikiをご覧ください。
+                なお、詳しい遊び方はアジ鯖公式Wikiをご覧ください。
                 https://wiki.azisaba.net/wiki/
                 """
         };
