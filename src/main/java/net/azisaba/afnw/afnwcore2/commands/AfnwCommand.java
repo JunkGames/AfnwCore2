@@ -62,19 +62,15 @@ public class AfnwCommand implements CommandExecutor {
         itemList.removeIf(type -> !isAllowed(type));
         ItemStack afnwItem = new ItemStack(itemList.get(0), itemSize);
 
-        try {
-            inv.remove(AfnwTicket.afnwTicket);
+        inv.remove(AfnwTicket.afnwTicket);
 
-            inv.addItem(afnwItem);
-            for(int i = 0; i < scaffoldSize; i++) {
-                inv.addItem(AfnwScaffold.afnwScaffold);
-            }
-
-            sender.sendMessage(Component.text("アイテムと交換しました。").color(NamedTextColor.GOLD));
-            sender.sendMessage(Component.text("交換内容: " + afnwItem.getType() + " ×" + afnwItem.getAmount() + ", 足場ブロック ×" + scaffoldSize).color(NamedTextColor.GOLD));
-        } catch (Error e) {
-            Bukkit.getLogger().warning(e.getMessage());
+        inv.addItem(afnwItem);
+        for(int i = 0; i < scaffoldSize; i++) {
+            inv.addItem(AfnwScaffold.afnwScaffold);
         }
+
+        sender.sendMessage(Component.text("アイテムと交換しました。").color(NamedTextColor.GOLD));
+        sender.sendMessage(Component.text("交換内容: " + afnwItem.getType() + " ×" + afnwItem.getAmount() + ", 足場ブロック ×" + scaffoldSize).color(NamedTextColor.GOLD));
         return true;
     }
 
