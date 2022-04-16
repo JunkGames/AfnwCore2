@@ -4,7 +4,6 @@ import net.azisaba.afnw.afnwcore2.util.item.AfnwScaffold;
 import net.azisaba.afnw.afnwcore2.util.item.AfnwTicket;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
