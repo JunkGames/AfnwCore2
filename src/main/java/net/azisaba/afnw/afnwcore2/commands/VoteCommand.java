@@ -14,7 +14,6 @@ public class VoteCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(!(command.getName().equals("vote"))) return true;
-        if(!(sender.hasPermission("afnw.command.vote"))) return true;
 
         String[] voteSiteURLs = {
                 ChatColor.GOLD +

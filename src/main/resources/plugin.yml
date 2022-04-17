@@ -17,12 +17,6 @@ permissions:
     default: op
   afnw.bypass.check.ticket:
     default: op
-  afnw.command.afnw:
-    description: /afnw
-    default: not op
-  afnw.command.vote:
-    description: /vote
-    default: not op
 
 commands:
   afnw:
