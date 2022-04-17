@@ -41,11 +41,9 @@ public record AfnwCommand(JavaPlugin plugin) implements CommandExecutor {
             sender.sendMessage(Component.text("インベントリに空きがありません。").color(NamedTextColor.RED));
             return true;
         }
-        if (!sender.hasPermission("afnw.bypass.check.ticket")) {
-            if (!inv.contains(AfnwTicket.afnwTicket)) {
-                sender.sendMessage(Component.text("チケットが見つかりません。").color(NamedTextColor.RED));
-                return true;
-            }
+        if (!inv.contains(AfnwTicket.afnwTicket)) {
+            sender.sendMessage(Component.text("チケットが見つかりません。").color(NamedTextColor.RED));
+            return true;
         }
 
         FileConfiguration config = plugin.getConfig();
