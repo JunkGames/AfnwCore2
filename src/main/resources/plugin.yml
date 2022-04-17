@@ -20,7 +20,12 @@ permissions:
   afnw.command.afnw:
     description: /afnw
     default: not op
+  afnw.command.vote:
+    description: /vote
+    default: not op
 
 commands:
   afnw:
     description: チケットとアイテムを交換します。
+  vote:
+    description: 投票サイト一覧を表示します。
