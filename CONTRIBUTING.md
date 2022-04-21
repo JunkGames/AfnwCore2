@@ -17,7 +17,7 @@
 1. The first letter of the class name must be capitalized.
 2. Do not nest if statements too deeply. (if possible)
 
-**But:**
+**Bad:**
 
 ```java
 public class FirstPlayerJoinListener implements Listener {
