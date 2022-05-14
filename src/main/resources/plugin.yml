@@ -15,9 +15,18 @@ permissions:
     default: op
   afnw.bypass.break.sapling:
     default: op
+  afnw.command.afnw:
+    default: false
+  afnw.command.vote:
+    default: false
+  afnw.command.respawn:
+    default: false
 
 commands:
   afnw:
     description: チケットとアイテムを交換します。
   vote:
     description: 投票サイト一覧を表示します。
+  respawn:
+    description: プレイヤーを強制的にリスポーンさせます。
+    usage: /respawn <player>
