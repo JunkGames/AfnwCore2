@@ -29,9 +29,14 @@ public record AfnwCommand(JavaPlugin plugin) implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(command.getName().equals("afnw"))) return true;
+        if (!(command.getName().equals("afnw"))) {
+            return true;
+        }
         if (!(sender instanceof Player)) {
             sender.sendMessage(Component.text("/afnwコマンドはプレイヤーのみ実行可能です。").color(NamedTextColor.RED));
+            return true;
+        }
+        if(!(sender.hasPermission("afnw.command.afnw"))) {
             return true;
         }
 
