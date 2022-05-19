@@ -3,6 +3,7 @@ package net.azisaba.afnw.afnwcore2;
 import net.azisaba.afnw.afnwcore2.commands.AfnwCommand;
 import net.azisaba.afnw.afnwcore2.commands.RespawnCommand;
 import net.azisaba.afnw.afnwcore2.commands.VoteCommand;
+import net.azisaba.afnw.afnwcore2.listeners.player.DeathListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.FirstPlayerJoinListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.JoinListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.QuitListener;
@@ -26,6 +27,7 @@ public class AfnwCore2 extends JavaPlugin {
         /* listeners - player */
         pluginEvent.registerEvents(new JoinListener(), this);
         pluginEvent.registerEvents(new QuitListener(), this);
+        pluginEvent.registerEvents(new DeathListener(), this);
         pluginEvent.registerEvents(new FirstPlayerJoinListener(), this);
         /* listeners - block */
         pluginEvent.registerEvents(new CropsBreakCanceller(), this);
