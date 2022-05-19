@@ -1,9 +1,6 @@
 package net.azisaba.afnw.afnwcore2;
 
-import net.azisaba.afnw.afnwcore2.commands.AfnwCommand;
-import net.azisaba.afnw.afnwcore2.commands.ConfigReloadCommand;
-import net.azisaba.afnw.afnwcore2.commands.RespawnCommand;
-import net.azisaba.afnw.afnwcore2.commands.VoteCommand;
+import net.azisaba.afnw.afnwcore2.commands.*;
 import net.azisaba.afnw.afnwcore2.listeners.player.DeathListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.FirstPlayerJoinListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.JoinListener;
@@ -39,6 +36,7 @@ public class AfnwCore2 extends JavaPlugin {
         Objects.requireNonNull(getCommand("vote")).setExecutor(new VoteCommand());
         Objects.requireNonNull(getCommand("respawn")).setExecutor(new RespawnCommand());
         Objects.requireNonNull(getCommand("config_reload")).setExecutor(new ConfigReloadCommand(this));
+        Objects.requireNonNull(getCommand("ticket")).setExecutor(new TicketCommand(this));
 
         getLogger().info("[AfnwCore2] Enabled!");
     }
