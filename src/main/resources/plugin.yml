@@ -21,6 +21,15 @@ permissions:
     default: false
   afnw.command.respawn:
     default: false
+  afnw.command.ticket-give:
+    default: false
+  afnw.command.ticket-show:
+    default: false
+  afnw.command.ticket-send:
+    default: false
+    description: DO NOT RUN COMMAND BY PLAYER
+  afnw.command.config_reload:
+    default: false
 
 commands:
   afnw:
@@ -30,3 +39,8 @@ commands:
   respawn:
     description: プレイヤーを強制的にリスポーンさせます。
     usage: /respawn <player>
+  ticket:
+    description: チケットに関するコマンド
+    usage: /ticket <subcommand>
+  config_reload:
+    description: コンフィグファイルのリロード

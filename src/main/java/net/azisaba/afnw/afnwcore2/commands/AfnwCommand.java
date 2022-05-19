@@ -46,7 +46,7 @@ public record AfnwCommand(JavaPlugin plugin) implements CommandExecutor {
             sender.sendMessage(Component.text("インベントリに空きがありません。").color(NamedTextColor.RED));
             return true;
         }
-        if (!inv.contains(AfnwTicket.afnwTicket)) {
+        if (!inv.containsAtLeast(AfnwTicket.afnwTicket, 1)) {
             sender.sendMessage(Component.text("チケットが見つかりません。").color(NamedTextColor.RED));
             return true;
         }
@@ -70,8 +70,7 @@ public record AfnwCommand(JavaPlugin plugin) implements CommandExecutor {
             throw new RuntimeException(e);
         }
 
-        inv.remove(AfnwTicket.afnwTicket);
-
+        inv.removeItem(AfnwTicket.afnwTicket);
         inv.addItem(afnwItem);
         for (int i = 0; i < scaffoldSize; i++) {
             inv.addItem(AfnwScaffold.afnwScaffold);
