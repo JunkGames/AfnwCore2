@@ -9,11 +9,11 @@ description: That world, once again.
 website: https://github.com/AfnwTeam/AfnwCore2
 
 permissions:
-  afnw.bypass.break.crops:
-    default: op
   afnw.bypass.break.newCrops:
     default: op
   afnw.bypass.break.sapling:
+    default: op
+  afnw.bypass.break.arable:
     default: op
   afnw.command.afnw:
     default: false

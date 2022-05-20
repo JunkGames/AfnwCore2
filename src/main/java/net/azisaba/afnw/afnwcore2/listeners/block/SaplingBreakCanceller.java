@@ -53,6 +53,12 @@ public class SaplingBreakCanceller implements Listener {
         Block b = e.getBlock();
 
         if(!Tag.CROPS.isTagged(b.getLocation().add(0, 1, 0).getBlock().getType())) return;
+        if(p.hasPermission("afnw.bypass.break.arable")) {
+            p.sendMessage(Component.text("耕地保護機能(crops)をbypassしました。").color(NamedTextColor.GOLD));
+            Logger.getLogger("bypass:crops").info(p.getName() + "break crops! (bypass canceller!)");
+            e.setCancelled(false);
+            return;
+        }
 
         e.setCancelled(true);
         p.sendMessage(Component.text("苗木の下にある耕地は苗木が育ち切るまで破壊することはできません。").color(NamedTextColor.RED));
