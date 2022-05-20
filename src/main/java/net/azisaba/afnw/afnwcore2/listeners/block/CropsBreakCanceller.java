@@ -34,6 +34,7 @@ public class CropsBreakCanceller implements Listener {
         if(p.hasPermission("afnw.bypass.break.arable")) {
             p.sendMessage(Component.text("耕地保護機能(crops)をbypassしました。").color(NamedTextColor.GOLD));
             Logger.getLogger("bypass:crops").info(p.getName() + "break crops! (bypass canceller!)");
+            e.setCancelled(false);
             return;
         }
 
