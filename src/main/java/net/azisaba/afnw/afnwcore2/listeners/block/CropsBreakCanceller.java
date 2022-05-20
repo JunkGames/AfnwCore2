@@ -31,7 +31,7 @@ public class CropsBreakCanceller implements Listener {
         Block b = e.getBlock();
 
         if(!Tag.CROPS.isTagged(b.getLocation().add(0, 1, 0).getBlock().getType())) return;
-        if(p.hasPermission("afnw.bypass.break.crops")) {
+        if(p.hasPermission("afnw.bypass.break.arable")) {
             p.sendMessage(Component.text("農作物保護機能(crops)をbypassしました。").color(NamedTextColor.GOLD));
             Logger.getLogger("bypass:crops").info(p.getName() + "break crops! (bypass canceller!)");
         }
