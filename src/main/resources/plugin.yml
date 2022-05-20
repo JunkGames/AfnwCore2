@@ -15,6 +15,8 @@ permissions:
     default: op
   afnw.bypass.break.sapling:
     default: op
+  afnw.bypass.break.arable:
+    default: op
   afnw.command.afnw:
     default: false
   afnw.command.vote:
