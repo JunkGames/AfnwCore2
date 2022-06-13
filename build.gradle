@@ -22,7 +22,7 @@ dependencies {
 }
 
 javadoc {
-    destinationDir = file("docs")
+    destinationDir = file("docs/javadoc")
 }
 
 def targetJavaVersion = 17
