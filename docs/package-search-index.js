@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"net.azisaba.afnw.afnwcore2"},{"l":"net.azisaba.afnw.afnwcore2.commands"},{"l":"net.azisaba.afnw.afnwcore2.listeners.block"},{"l":"net.azisaba.afnw.afnwcore2.listeners.player"},{"l":"net.azisaba.afnw.afnwcore2.util.data"},{"l":"net.azisaba.afnw.afnwcore2.util.item"},{"l":"すべてのパッケージ","u":"allpackages-index.html"}];updateSearchResults();
