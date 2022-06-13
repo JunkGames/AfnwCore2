@@ -15,7 +15,7 @@ import org.bukkit.event.block.BlockFromToEvent;
 import java.util.logging.Logger;
 
 /**
- * 農作物の保護機能
+ * Crop Protection Functions
  *
  * @author m2en
  * @see org.bukkit.event.Listener
@@ -23,7 +23,9 @@ import java.util.logging.Logger;
 public class CropsBreakCanceller implements Listener {
 
     /**
-     * 農作物が植えられている耕地の保護
+     * Protection of arable land planted with crops
+     *
+     * @param e BlockBreakEvent
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakCrops(BlockBreakEvent e) {
@@ -43,7 +45,9 @@ public class CropsBreakCanceller implements Listener {
     }
 
     /**
-     * 成長しきっていない農作物を保護する
+     * Protecting Undergrown Crops
+     *
+     * @param e BlockBreakEvent
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakNewAgeCrops(BlockBreakEvent e) {
@@ -66,7 +70,9 @@ public class CropsBreakCanceller implements Listener {
     }
 
     /**
-     * 農作物に対する水流をブロックする阻害するメソッド
+     * Block water flow against crops
+     *
+     * @param e BlockFromToEvent
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakByWater(BlockFromToEvent e) {

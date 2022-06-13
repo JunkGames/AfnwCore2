@@ -8,15 +8,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 /**
- * 初参加者に対するイベンドハンドラ
+ * Event handlers for first-time participants
  * @author m2en
  * @see org.bukkit.event.Listener
  */
 public class FirstPlayerJoinListener implements Listener {
 
     /**
-     * 初めて参加したプレイヤーに遊び方を軽く紹介
-     * @param e PlayerJoinEventのターゲットプレイヤー
+     * A light introduction to how to play for new players who join for the first time
+     * @param e Target player for PlayerJoinEvent
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onJoin(PlayerJoinEvent e) {

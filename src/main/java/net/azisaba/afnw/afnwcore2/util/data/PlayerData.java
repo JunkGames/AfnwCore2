@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
 /**
- * 投票回数などを保存するプレイヤーデータクラスです。
+ * Player data class to store vote counts, etc.
  *
  * @author m2en
  */
@@ -24,19 +24,19 @@ public class PlayerData {
     private final Plugin plugin;
 
     /**
-     * プレイヤーデータを定義します。
-     * Paperサーバーでは player-data.yml として作成されます。
-     * @param plugin メインクラス引数
+     * Define player data.
+     * On the Paper server, it is created as player-data.yml.
+     * @param plugin Main Class Arguments
      */
     public PlayerData(Plugin plugin) {
         this(plugin, "player-data.yml");
     }
 
     /**
-     * プレイヤーデータをplugins/AfnwCore2配下に設置します。
+     * Place player data under plugins/AfnwCore2.
      *
-     * @param plugin メインクラス引数
-     * @param fileName プレイヤーデータのファイル名
+     * @param plugin Main Class Arguments
+     * @param fileName Player data file name
      */
     public PlayerData(Plugin plugin, String fileName) {
         this.plugin = plugin;
@@ -45,8 +45,8 @@ public class PlayerData {
     }
 
     /**
-     * プレイヤーデータが存在しない場合、ファイルを再生成します。
-     * 本番環境時、公開中にプレイヤーデータが存在しない場合はバックアップサーバーから復活させます。
+     * If player data does not exist, the file is regenerated.
+     * If player data does not exist in the production environment or while the system is open to the public, it will be restored from the backup server.
      */
     public void saveDefaultPlayerData() {
         if(!dataFile.exists()) {
@@ -55,7 +55,7 @@ public class PlayerData {
     }
 
     /**
-     * プレイヤーデータの読み込みを行います。
+     * Loads player data.
      */
     public void reloadPlayerData() {
         YamlConfiguration data = YamlConfiguration.loadConfiguration(dataFile);
@@ -69,8 +69,8 @@ public class PlayerData {
     }
 
     /**
-     * プレイヤーデータを取得します。
-     * @return プレイヤーデータを返します。存在しない場合は再リロードを行います。
+     * Retrieve player data.
+     * @return Returns player data. If not present, reloads.
      */
     public FileConfiguration getPlayerData() {
         if(playerData == null) {
@@ -81,7 +81,7 @@ public class PlayerData {
     }
 
     /**
-     * プレイヤーデータを保存します。
+     * Save player data.
      */
     public void savePlayerData() {
         if(playerData == null) {

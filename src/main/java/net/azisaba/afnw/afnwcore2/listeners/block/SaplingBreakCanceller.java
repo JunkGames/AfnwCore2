@@ -16,7 +16,7 @@ import org.bukkit.event.block.BlockFromToEvent;
 import java.util.logging.Logger;
 
 /**
- * 苗木を保護する機能
+ * Ability to protect saplings
  *
  * @author m2en
  * @see org.bukkit.event.Listener
@@ -24,7 +24,9 @@ import java.util.logging.Logger;
 public class SaplingBreakCanceller implements Listener {
 
     /**
-     * 苗木を保護する
+     * Protect saplings
+     *
+     * @param e BlockBreakEvent
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakSapling(BlockBreakEvent e) {
@@ -46,7 +48,9 @@ public class SaplingBreakCanceller implements Listener {
     }
 
     /**
-     * 苗木が埋まっている土を保護する
+     * Protect the soil in which the saplings are buried
+     *
+     * @param e BlockBreakEvent
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakCrops(BlockBreakEvent e) {
@@ -66,7 +70,9 @@ public class SaplingBreakCanceller implements Listener {
     }
 
     /**
-     * 苗木に対する水流をブロック
+     * Block water flow against saplings
+     *
+     * @param e BlockBreakEvent
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakByWater(BlockFromToEvent e) {

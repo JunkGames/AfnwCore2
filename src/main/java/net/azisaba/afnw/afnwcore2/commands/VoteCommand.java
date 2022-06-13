@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * /vote - 投票サイト一覧の送信
+ * /vote - Submit list of voting sites
  *
  * @author m2en
  * @see org.bukkit.command.CommandExecutor
@@ -20,7 +20,7 @@ public class VoteCommand implements CommandExecutor {
      * @param command Command which was executed
      * @param label Alias of the command which was used
      * @param args Passed command arguments
-     * @return コマンドの実行結果
+     * @return Result of command execution
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
