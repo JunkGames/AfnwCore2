@@ -28,6 +28,14 @@ gradle build
 
 なお、Intellij IDEAを使用している場合はすべてGUI上で使用可能です。
 
+## Beta: JavaDoc
+
+試験的実装としてAfnwCore2のJavaDocを公開しています。以下のリンクから閲覧可能です。
+
+https://afnwcore2.merunno.dev/
+
+※ ローカル環境で `gradle javadoc` を実行することで `build/` 配下にhtmlファイルが生成されます。そちらの参照も可能です。
+
 ## コントリビュート
 
 Issueを作成する前にAfnw運営全体に対して報告を行ってください。また、悪用可能な不具合等はIssueを作成しないでください。
