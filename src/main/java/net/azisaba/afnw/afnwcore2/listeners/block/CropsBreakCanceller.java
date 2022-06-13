@@ -16,14 +16,14 @@ import java.util.logging.Logger;
 
 /**
  * 農作物の保護機能
- * bypass permission
- * - afnw.bypass.break.crops
- * - afnw.bypass.break.newCrops
+ *
+ * @author m2en
+ * @see org.bukkit.event.Listener
  */
 public class CropsBreakCanceller implements Listener {
 
     /**
-     * 農作物が植えられている耕地の保護をするメソッド
+     * 農作物が植えられている耕地の保護
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakCrops(BlockBreakEvent e) {
@@ -43,7 +43,7 @@ public class CropsBreakCanceller implements Listener {
     }
 
     /**
-     * 成長しきっていない農作物を保護するメソッド
+     * 成長しきっていない農作物を保護する
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakNewAgeCrops(BlockBreakEvent e) {

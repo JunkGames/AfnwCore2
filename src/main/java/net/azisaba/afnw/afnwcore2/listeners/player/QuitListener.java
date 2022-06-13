@@ -9,10 +9,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
- * 退出時のイベンドハンドラ
+ * ログアウトしたプレイヤーの名前を送信
+ * @author m2en
+ * @see org.bukkit.event.Listener
  */
 public class QuitListener implements Listener {
 
+    /**
+     * ログアウトしたプレイヤーの名前を送信
+     * @param e PlayerQuitEventのターゲットプレイヤー
+     */
     @EventHandler(priority = EventPriority.NORMAL)
     public void onQuit(PlayerQuitEvent e) {
         Player p = e.getPlayer();

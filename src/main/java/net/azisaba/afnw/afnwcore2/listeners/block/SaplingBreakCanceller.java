@@ -17,13 +17,14 @@ import java.util.logging.Logger;
 
 /**
  * 苗木を保護する機能
- * bypass permission
- *  * - afnw.bypass.break.sapling
+ *
+ * @author m2en
+ * @see org.bukkit.event.Listener
  */
 public class SaplingBreakCanceller implements Listener {
 
     /**
-     * 苗木を保護するメソッド
+     * 苗木を保護する
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakSapling(BlockBreakEvent e) {
@@ -45,7 +46,7 @@ public class SaplingBreakCanceller implements Listener {
     }
 
     /**
-     * 苗木が埋まっている土を保護するメソッド
+     * 苗木が埋まっている土を保護する
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakCrops(BlockBreakEvent e) {
@@ -65,7 +66,7 @@ public class SaplingBreakCanceller implements Listener {
     }
 
     /**
-     * 苗木に対する水流をブロックする阻害するメソッド
+     * 苗木に対する水流をブロック
      */
     @EventHandler(priority = EventPriority.HIGH)
     public void onBreakByWater(BlockFromToEvent e) {

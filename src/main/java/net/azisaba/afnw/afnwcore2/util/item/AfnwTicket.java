@@ -12,7 +12,9 @@ import java.util.List;
 
 /**
  * AfnwTicketを作成する
- * @param plugin
+ *
+ * @author m2en
+ * @param plugin メインクラス引数
  */
 public record AfnwTicket(AfnwCore2 plugin) {
 
@@ -26,4 +28,5 @@ public record AfnwTicket(AfnwCore2 plugin) {
         metaData.setLore(lore);
         afnwTicket.setItemMeta(metaData);
     }
+
 }

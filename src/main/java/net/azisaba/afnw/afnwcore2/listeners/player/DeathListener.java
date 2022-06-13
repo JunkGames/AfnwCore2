@@ -8,8 +8,18 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
+/**
+ * 死亡時にロストした経験値を伝える
+ *
+ * @author m2en
+ * @see org.bukkit.event.Listener
+ */
 public class DeathListener implements Listener {
 
+    /**
+     * 死亡したプレイヤーへメッセージを送信
+     * @param e PlayerDeathEventのターゲットプレイヤー
+     */
     @EventHandler(priority = EventPriority.HIGH)
     public void onDeath(PlayerDeathEvent e) {
         Player p = e.getPlayer();
