@@ -9,9 +9,15 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 /**
  * 初参加者に対するイベンドハンドラ
+ * @author m2en
+ * @see org.bukkit.event.Listener
  */
 public class FirstPlayerJoinListener implements Listener {
 
+    /**
+     * 初めて参加したプレイヤーに遊び方を軽く紹介
+     * @param e PlayerJoinEventのターゲットプレイヤー
+     */
     @EventHandler(priority = EventPriority.HIGH)
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();

@@ -15,8 +15,22 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * /respawn - プレイヤーの強制リスポーン
+ *
+ * @author m2en
+ * @see org.bukkit.command.CommandExecutor
+ */
 public class RespawnCommand implements TabExecutor {
 
+    /**
+     * /respawn
+     * @param sender Source of the command
+     * @param command Command which was executed
+     * @param label Alias of the command which was used
+     * @param args Passed command arguments
+     * @return コマンドの実行結果
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if(!(command.getName().equals("respawn"))) {

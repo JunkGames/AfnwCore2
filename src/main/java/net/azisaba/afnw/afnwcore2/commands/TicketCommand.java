@@ -12,9 +12,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * /ticket - コマンドの配布、送信
+ *
+ * @author m2en
+ * @see org.bukkit.command.CommandExecutor
+ */
 public record TicketCommand(JavaPlugin plugin) implements CommandExecutor {
 
-
+    /**
+     * /ticket <send, give>
+     * @param sender Source of the command
+     * @param command Command which was executed
+     * @param label Alias of the command which was used
+     * @param args Passed command arguments
+     * @return コマンドの実行結果
+     */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         // TODO: パーミッションチェックの導入

@@ -13,6 +13,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
+/**
+ * AfnwCore2 メインクラス
+ *
+ * @author m2en
+ */
 public class AfnwCore2 extends JavaPlugin {
 
     @Override
