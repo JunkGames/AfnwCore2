@@ -13,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * /ticket - コマンドの配布、送信
+ * /ticket - Distribute and send commands
  *
  * @author m2en
  * @see org.bukkit.command.CommandExecutor
@@ -21,12 +21,12 @@ import org.jetbrains.annotations.NotNull;
 public record TicketCommand(JavaPlugin plugin) implements CommandExecutor {
 
     /**
-     * /ticket <send, give>
+     * /ticket send, give
      * @param sender Source of the command
      * @param command Command which was executed
      * @param label Alias of the command which was used
      * @param args Passed command arguments
-     * @return コマンドの実行結果
+     * @return Result of command execution
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

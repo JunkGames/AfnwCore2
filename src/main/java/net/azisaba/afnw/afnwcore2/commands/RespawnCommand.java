@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * /respawn - プレイヤーの強制リスポーン
+ * /respawn - Forced respawning of players.
  *
  * @author m2en
  * @see org.bukkit.command.CommandExecutor
@@ -29,7 +29,7 @@ public class RespawnCommand implements TabExecutor {
      * @param command Command which was executed
      * @param label Alias of the command which was used
      * @param args Passed command arguments
-     * @return コマンドの実行結果
+     * @return Result of command execution
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 足場ブロックを作成します。
+ * Create scaffolding blocks.
  *
  * @author m2en
- * @param plugin メインクラス引数
+ * @param plugin Main Class Arguments
  */
 public record AfnwScaffold(AfnwCore2 plugin) {
 

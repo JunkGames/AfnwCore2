@@ -9,9 +9,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * /config reload - Configファイルのリロード
+ * /config reload - Reload Config file
  *
- * @apiNote プレイヤーデータはリロードしません。
  * @author m2en
  * @see org.bukkit.command.CommandExecutor
  */
@@ -23,7 +22,7 @@ public record ConfigReloadCommand(JavaPlugin plugin) implements CommandExecutor 
      * @param command Command which was executed
      * @param label Alias of the command which was used
      * @param args Passed command arguments
-     * @return コマンドの実行結果
+     * @return Result of command execution
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
