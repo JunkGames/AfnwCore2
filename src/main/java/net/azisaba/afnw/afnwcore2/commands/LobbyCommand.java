@@ -36,7 +36,7 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
     World lobby = Bukkit.getWorld(config.getString("tp.lobby_world_name", "lobby"));
     int standby = config.getInt("tp.standby", 10);
     if(lobby == null) {
-      throw new RuntimeException("Lobby World could not be found");
+      throw new NullPointerException("Lobby World could not be found");
     }
 
     p.sendMessage(Component.text(standby + "秒後、ロビーへテレポートします....", NamedTextColor.AQUA));
