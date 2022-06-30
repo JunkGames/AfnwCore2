@@ -1,5 +1,6 @@
 package net.azisaba.afnw.afnwcore2.util.data;
 
+import lombok.Data;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -16,6 +17,7 @@ import java.util.logging.Level;
  *
  * @author m2en
  */
+@Data
 public class PlayerData {
 
     private FileConfiguration playerData = null;
