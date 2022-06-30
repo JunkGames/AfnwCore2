@@ -39,7 +39,7 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
       throw new NullPointerException("Lobby World could not be found");
     }
     if(p.getWorld() == lobby) {
-      sender.sendMessage(Component.text("既にロビーにいます。", NamedTextColor.RED));
+      sender.sendMessage(Component.text("既にロビーにいるため、テレポートできません。", NamedTextColor.RED));
       return false;
     }
 
