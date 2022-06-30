@@ -23,7 +23,7 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
 
     if (!(sender instanceof Player p)) {
       sender.sendMessage(Component.text("/lobbyコマンドはプレイヤーのみ実行可能です。", NamedTextColor.RED));
-      return true;
+      return false;
     }
 
     /**
@@ -37,6 +37,10 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
     int standby = config.getInt("tp.standby", 10);
     if(lobby == null) {
       throw new NullPointerException("Lobby World could not be found");
+    }
+    if(p.getWorld() == lobby) {
+      sender.sendMessage(Component.text("既にロビーにいます。", NamedTextColor.RED));
+      return false;
     }
 
     p.sendMessage(Component.text(standby + "秒後、ロビーへテレポートします....", NamedTextColor.AQUA));
