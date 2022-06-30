@@ -18,7 +18,7 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
     if(!(command.getName().equals("lobby"))) {
-      return true;
+      return false;
     }
 
     if (!(sender instanceof Player p)) {
@@ -26,11 +26,9 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
       return false;
     }
 
-    /**
     if(!(sender.hasPermission("afnw.command.lobby"))) {
-      return true;
+      return false;
     }
-    */
 
     FileConfiguration config = plugin.getConfig();
     World lobby = Bukkit.getWorld(config.getString("tp.lobby_world_name", "lobby"));
