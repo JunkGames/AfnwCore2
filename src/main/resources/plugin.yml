@@ -6,6 +6,7 @@ prefix: AfnwCore2
 load: STARTUP
 authors: [ merunno, afnwteam ]
 description: That world, once again.
+depend: [ Essentials ]
 website: https://github.com/AfnwTeam/AfnwCore2
 
 permissions:
