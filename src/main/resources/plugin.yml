@@ -30,6 +30,8 @@ permissions:
     description: DO NOT RUN COMMAND BY PLAYER
   afnw.command.config_reload:
     default: false
+  afnw.command.lobby:
+    default: not op
 
 commands:
   afnw:
@@ -40,7 +42,9 @@ commands:
     description: プレイヤーを強制的にリスポーンさせます。
     usage: /respawn <player>
   ticket:
-    description: チケットに関するコマンド
+    description: チケットコマンドのサブグループ
     usage: /ticket <subcommand>
   config_reload:
-    description: コンフィグファイルのリロード
+    description: コンフィグファイルのリロードを行います。
+  lobby:
+    description: ロビーへTPします。
