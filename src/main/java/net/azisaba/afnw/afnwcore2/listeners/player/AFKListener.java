@@ -19,6 +19,9 @@ public record AFKListener(JavaPlugin plugin) implements Listener {
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onAFK(AfkStatusChangeEvent e) {
     Player p = e.getAffected().getBase();
+    if(p.hasPermission("afnw.bypass.afk")) {
+      return;
+    }
 
     FileConfiguration config = plugin.getConfig();
     World afkWorld = Bukkit.getWorld(config.getString("afk.afk_world_name", "afk"));
