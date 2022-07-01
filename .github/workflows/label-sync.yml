@@ -3,7 +3,7 @@ name: label sync
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '.github/labels.yml'
       - '.github/workflows/label-sync.yml'
