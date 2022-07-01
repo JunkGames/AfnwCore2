@@ -52,6 +52,10 @@ public record VoidCommand(JavaPlugin plugin) implements CommandExecutor {
     if (p.getWorld() == main) {
       sender.sendMessage(Component.text("既にメインワールドにいるため、テレポートできません。", NamedTextColor.RED));
       return false;
+    } else if(p.hasPermission("afnw.bypass.standby")) {
+      p.teleport(main.getSpawnLocation());
+      sender.sendMessage(Component.text("メインワールドへテレポートしました。(Admin/Mod権限をもっているため、待機時間は発生しません。)", NamedTextColor.GREEN));
+      return true;
     }
 
     p.sendMessage(Component.text(standby + "秒後、メインワールドへテレポートします....", NamedTextColor.AQUA));

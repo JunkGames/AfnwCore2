@@ -18,6 +18,8 @@ permissions:
     default: op
   afnw.bypass.afk:
     default: op
+  afnw.bypass.standby:
+    default: op
   afnw.command.afnw:
     default: false
   afnw.command.vote:

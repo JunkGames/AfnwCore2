@@ -51,9 +51,14 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
     if(lobby == null) {
       throw new NullPointerException("Lobby World could not be found");
     }
+
     if(p.getWorld() == lobby) {
       sender.sendMessage(Component.text("既にロビーにいるため、テレポートできません。", NamedTextColor.RED));
       return false;
+    } else if(p.hasPermission("afnw.bypass.standby")) {
+      p.teleport(lobby.getSpawnLocation());
+      sender.sendMessage(Component.text("ロビーへテレポートしました。(Admin/Mod権限をもっているため、待機時間は発生しません。)", NamedTextColor.GREEN));
+      return true;
     }
 
     p.sendMessage(Component.text(standby + "秒後、ロビーへテレポートします....", NamedTextColor.AQUA));
