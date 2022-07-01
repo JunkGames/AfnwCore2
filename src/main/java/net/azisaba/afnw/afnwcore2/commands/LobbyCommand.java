@@ -13,8 +13,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Teleport Lobby Command
+ *
+ * @see org.bukkit.command.CommandExecutor
+ * @author m2en
+ * @param plugin AfnwCore2
+ */
 public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
 
+  /**
+   * /lobby - sender teleport to lobby
+   * @param sender Source of the command
+   * @param command Command which was executed
+   * @param label Alias of the command which was used
+   * @param args Passed command arguments
+   * @return command boolean
+   */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
     if(!(command.getName().equals("lobby"))) {

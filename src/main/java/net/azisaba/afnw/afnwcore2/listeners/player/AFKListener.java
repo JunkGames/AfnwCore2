@@ -14,8 +14,18 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * Auto teleport afk point
+ * @param plugin AfnwCore2
+ * @see org.bukkit.event.Listener
+ * @author m2en
+ */
 public record AFKListener(JavaPlugin plugin) implements Listener {
 
+  /**
+   * AFK Events
+   * @param e net.ess3.api.events.AfkStatusChangeEvent
+   */
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onAFK(AfkStatusChangeEvent e) {
     Player p = e.getAffected().getBase();
