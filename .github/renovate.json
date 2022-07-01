@@ -2,5 +2,7 @@
   "extends": [
     "github>AzisabaNetwork/renovate-config"
   ],
-  "labels": ["dependency"]
+  "labels": ["\uD83D\uDD2Erenovate: update"],
+  "reviewers": ["m2en"],
+  "automerge": true
 }

@@ -1,9 +1,6 @@
 name: Java17 Build
 
 on:
-  push:
-    paths-ignore:
-      - '**.md'
   pull_request:
     paths-ignore:
       - '**.md'
