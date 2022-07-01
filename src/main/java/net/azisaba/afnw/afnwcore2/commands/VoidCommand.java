@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 public record VoidCommand(JavaPlugin plugin) implements CommandExecutor {
 
   /**
-   * /lobby - sender teleport to lobby
+   * /void - sender teleport to lobby
    * @param sender Source of the command
    * @param command Command which was executed
    * @param label Alias of the command which was used
