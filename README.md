@@ -12,7 +12,7 @@
 - [Java SE Development Kit 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - Java 17
 - Gradle 7.3
-- Paper 1.17.1 (411)
+- Paper 1.17.1 (gh 411)
 
 ## 前提プラグイン
 
@@ -28,24 +28,8 @@ gradle build
 
 なお、Intellij IDEAを使用している場合はすべてGUI上で使用可能です。
 
-## Beta: JavaDoc
-
-試験的実装としてAfnwCore2のJavaDocを公開しています。以下のリンクから閲覧可能です。
-
-https://afnwcore2.merunno.dev/
-
-※ ローカル環境で `gradle javadoc` を実行することで `build/` 配下にhtmlファイルが生成されます。そちらの参照も可能です。
-
 ## コントリビュート
 
 Issueを作成する前にAfnw運営全体に対して報告を行ってください。また、悪用可能な不具合等はIssueを作成しないでください。
 
 PRを提出する際は [コントリビュートガイド](.github/CONTRIBUTING.md) を参照してください。
-
-## パーミッション
-
-### bypass
-
-- `afnw.bypass.break.crops`
-- `afnw.bypass.break.newCrops`
-- `afnw.bypass.break.sapling`
