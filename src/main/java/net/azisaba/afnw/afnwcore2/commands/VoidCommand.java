@@ -14,16 +14,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Teleport Lobby Command
+ * Teleport Void(Afnw_World) Command
  *
- * @see org.bukkit.command.CommandExecutor
- * @author m2en
  * @param plugin AfnwCore2
  */
-public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
+public record VoidCommand(JavaPlugin plugin) implements CommandExecutor {
 
   /**
-   * /lobby - sender teleport to lobby
+   * /void - sender teleport to lobby
    * @param sender Source of the command
    * @param command Command which was executed
    * @param label Alias of the command which was used
@@ -32,40 +30,39 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    if(!(command.getName().equals("lobby"))) {
+    if (!(command.getName().equals("void"))) {
       return false;
     }
 
     if (!(sender instanceof Player p)) {
-      sender.sendMessage(Component.text("/lobbyコマンドはプレイヤーのみ実行可能です。", NamedTextColor.RED));
+      sender.sendMessage(Component.text("/voidコマンドはプレイヤーのみ実行可能です。", NamedTextColor.RED));
       return false;
     }
 
-    if(!(sender.hasPermission("afnw.command.lobby"))) {
+    if (!(sender.hasPermission("afnw.command.void"))) {
       return false;
     }
 
     FileConfiguration config = plugin.getConfig();
-    World lobby = Bukkit.getWorld(config.getString("tp.lobby_world_name", "lobby"));
+    World main = Bukkit.getWorld(config.getString("tp.void_world_name", "afnw"));
     int standby = config.getInt("tp.standby", 10);
-    if(lobby == null) {
-      throw new NullPointerException("Lobby World could not be found");
+    if (main == null) {
+      throw new NullPointerException("Void World could not be found");
     }
-    if(p.getWorld() == lobby) {
-      sender.sendMessage(Component.text("既にロビーにいるため、テレポートできません。", NamedTextColor.RED));
+    if (p.getWorld() == main) {
+      sender.sendMessage(Component.text("既にメインワールドにいるため、テレポートできません。", NamedTextColor.RED));
       return false;
     }
 
-    p.sendMessage(Component.text(standby + "秒後、ロビーへテレポートします....", NamedTextColor.AQUA));
+    p.sendMessage(Component.text(standby + "秒後、メインワールドへテレポートします....", NamedTextColor.AQUA));
     new BukkitRunnable() {
       @Override
       public void run() {
-        p.teleport(lobby.getSpawnLocation());
-        p.sendMessage(Component.text("ロビーへテレポートしました。", NamedTextColor.AQUA));
+        p.teleport(main.getSpawnLocation());
+        p.sendMessage(Component.text("メインワールドへテレポートしました。", NamedTextColor.AQUA));
       }
     }.runTaskLater(plugin, 20L * standby);
 
     return true;
   }
-
 }

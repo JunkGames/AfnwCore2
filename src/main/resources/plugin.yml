@@ -35,6 +35,8 @@ permissions:
     default: false
   afnw.command.lobby:
     default: not op
+  afnw.command.void:
+    default: not op
 
 commands:
   afnw:

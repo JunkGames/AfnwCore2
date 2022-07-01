@@ -16,6 +16,8 @@ tp:
   # TPコマンド(not /tp)を使用した際の待機時間を病で指定します。int(数)ではない場合はエラーが発生します。デフォルト: 10
   lobby_world_name: "lobby"
   # ロビーワールドの名前を指定します。デフォルト:lobby
+  void_world_name: "afnw"
+  # Voidワールドの名前を指定します。デフォルト:afnw
 
 afk:
   afk_world_name: "afk"

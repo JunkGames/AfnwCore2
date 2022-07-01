@@ -1,5 +1,6 @@
 package net.azisaba.afnw.afnwcore2.listeners.player;
 
+import net.azisaba.afnw.afnwcore2.AfnwCore2;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
@@ -8,6 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.time.Duration;
@@ -30,6 +33,19 @@ public class JoinListener implements Listener {
         // プレイヤーがサーバーに参加したらタイトルとログインメッセージを送信する
         sendPlayerTitle(p);
         e.joinMessage(Component.text(p.getName() + "がログインしました").color(NamedTextColor.YELLOW));
+
+        // 統合版のプレイヤーをブロックする
+        if(p.getName().startsWith(".")) {
+            if(p.getName().equals(".Meru92s")) return;
+            p.sendMessage(Component.text("Minecraft Bedrock Edition(統合版)での接続を検知しました。\n大変申し訳ありませんが統合版でAfnwをプレイすることはできません。Java版での接続をお願いします。15秒後自動的にロビーへ戻ります。", NamedTextColor.RED));
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    p.kick(Component.text("Bedrock-Blockが発動しました。"));
+                }
+            }.runTaskLater(JavaPlugin.getPlugin(AfnwCore2.class), 20L * 15);
+        }
     }
 
     /**
