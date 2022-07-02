@@ -55,3 +55,5 @@ commands:
     description: コンフィグファイルのリロードを行います。
   lobby:
     description: ロビーへTPします。
+  void:
+    description: メインワールドへ移動します。
