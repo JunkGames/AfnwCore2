@@ -53,6 +53,8 @@ commands:
     usage: /ticket <subcommand>
   config_reload:
     description: コンフィグファイルのリロードを行います。
+    aliases:
+      - reload#afnw
   lobby:
     description: ロビーへTPします。
   void:
