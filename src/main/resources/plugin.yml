@@ -21,7 +21,7 @@ permissions:
   afnw.bypass.standby:
     default: op
   afnw.command.afnw:
-    default: false
+    default: not op
   afnw.command.vote:
     default: false
   afnw.command.respawn:
