@@ -36,7 +36,7 @@ public class JoinListener implements Listener {
 
         // 統合版のプレイヤーをブロックする
         if(p.getName().startsWith(".")) {
-            if(p.getName().equals(".Meru92s")) return;
+            if(p.getName().equals(".Meru92a")) return;
             p.sendMessage(Component.text("Minecraft Bedrock Edition(統合版)での接続を検知しました。\n大変申し訳ありませんが統合版でAfnwをプレイすることはできません。Java版での接続をお願いします。15秒後自動的にロビーへ戻ります。", NamedTextColor.RED));
 
             new BukkitRunnable() {
