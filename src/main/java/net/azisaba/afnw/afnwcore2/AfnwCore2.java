@@ -9,6 +9,7 @@ import net.azisaba.afnw.afnwcore2.listeners.player.QuitListener;
 import net.azisaba.afnw.afnwcore2.listeners.block.CropsBreakCanceller;
 import net.azisaba.afnw.afnwcore2.listeners.block.SaplingBreakCanceller;
 import org.bukkit.Bukkit;
+import org.bukkit.block.data.type.Bed;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,6 +43,7 @@ public class AfnwCore2 extends JavaPlugin {
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand(this));
         Objects.requireNonNull(getCommand("void")).setExecutor(new VoidCommand(this));
         Objects.requireNonNull(getCommand("tutorial")).setExecutor(new TutorialCommand(this));
+        Objects.requireNonNull(getCommand("bed")).setExecutor(new BedCommand());
 
         getLogger().info("[AfnwCore2] Enabled!");
     }
