@@ -75,3 +75,8 @@ commands:
     description: プライベートチェスト(個人チェスト)を開きます。
     aliases:
       - personalchest
+  trash:
+    description: ゴミ箱を開きます。
+    aliases:
+      - haruneko
+      - gomi
