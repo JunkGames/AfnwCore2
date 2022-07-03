@@ -36,6 +36,9 @@ public class RespawnCommand implements TabExecutor {
         if(!(command.getName().equals("respawn"))) {
             return true;
         }
+        if(!(sender.hasPermission("afnw.command.respawn"))) {
+            return true;
+        }
         if(args.length == 0) {
             sender.sendMessage(Component.text("Usage: /respawn <player>", NamedTextColor.RED));
             return true;
