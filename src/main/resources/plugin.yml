@@ -41,6 +41,10 @@ permissions:
     default: not op
   afnw.command.tutorial:
     default: not op
+  afnw.command.bed:
+    default: not op
+  afnw.command.pc:
+    default: not op
 
 commands:
   afnw:
@@ -63,3 +67,11 @@ commands:
     description: メインワールドへ移動します。
   tutorial:
     description: チュートリアルワールドへ移動します。
+  bed:
+    description: ベッド地点に移動します。
+    aliases:
+      - home
+  pc:
+    description: プライベートチェスト(個人チェスト)を開きます。
+    aliases:
+      - personalchest
