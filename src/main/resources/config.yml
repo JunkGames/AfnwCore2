@@ -18,6 +18,8 @@ tp:
   # ロビーワールドの名前を指定します。デフォルト:lobby
   void_world_name: "afnw"
   # Voidワールドの名前を指定します。デフォルト:afnw
+  tutorial_world_name: "tutorial"
+  # チュートリアルワールドの名前を指定します。デフォルト:tutorial
 
 afk:
   afk_world_name: "afk"

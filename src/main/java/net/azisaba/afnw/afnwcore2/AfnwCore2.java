@@ -41,6 +41,7 @@ public class AfnwCore2 extends JavaPlugin {
         Objects.requireNonNull(getCommand("ticket")).setExecutor(new TicketCommand(this));
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand(this));
         Objects.requireNonNull(getCommand("void")).setExecutor(new VoidCommand(this));
+        Objects.requireNonNull(getCommand("tutorial")).setExecutor(new TutorialCommand(this));
 
         getLogger().info("[AfnwCore2] Enabled!");
     }
