@@ -1,5 +1,6 @@
 package net.azisaba.afnw.afnwcore2.commands;
 
+import io.papermc.paper.event.player.PlayerDeepSleepEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
@@ -8,11 +9,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
-public record BedCommand(JavaPlugin plugin) implements CommandExecutor {
+public record BedCommand(JavaPlugin plugin) implements CommandExecutor, Listener {
 
   @Override
   public boolean onCommand(@NotNull CommandSender sender, Command command, @NotNull String label, String[] args) {
@@ -48,6 +52,15 @@ public record BedCommand(JavaPlugin plugin) implements CommandExecutor {
       }
     }.runTaskLater(plugin, 20L * standby);
     return true;
+  }
+
+  @EventHandler
+  public void onBed(PlayerDeepSleepEvent e) {
+    Player p = e.getPlayer();
+    if(!(p.isSneaking())) {
+      return;
+    }
+    p.sendMessage(Component.text("リスポーン地点を更新しました。", NamedTextColor.AQUA));
   }
 
 }
