@@ -31,17 +31,17 @@ public record TutorialCommand(JavaPlugin plugin) implements CommandExecutor {
     }
 
     FileConfiguration config = plugin.getConfig();
-    World lobby = Bukkit.getWorld(config.getString("tp.tutorial_world_name", "tutorial"));
+    World tutorial = Bukkit.getWorld(config.getString("tp.tutorial_world_name", "tutorial"));
     int standby = config.getInt("tp.standby", 10);
-    if (lobby == null) {
+    if (tutorial == null) {
       throw new NullPointerException("Tutorial World could not be found");
     }
 
-    if (p.getWorld() == lobby) {
+    if (p.getWorld() == tutorial) {
       sender.sendMessage(Component.text("既にチュートリアルにいるため、テレポートできません。", NamedTextColor.RED));
       return false;
     } else if (p.hasPermission("afnw.bypass.standby")) {
-      p.teleport(lobby.getSpawnLocation());
+      p.teleport(tutorial.getSpawnLocation());
       sender.sendMessage(Component.text("チュートリアルへテレポートしました。(Admin/Mod権限をもっているため、待機時間は発生しません。)",
           NamedTextColor.GREEN));
       return true;
@@ -51,7 +51,7 @@ public record TutorialCommand(JavaPlugin plugin) implements CommandExecutor {
     new BukkitRunnable() {
       @Override
       public void run() {
-        p.teleport(lobby.getSpawnLocation());
+        p.teleport(tutorial.getSpawnLocation());
         p.sendMessage(Component.text("チュートリアルへテレポートしました。", NamedTextColor.AQUA));
       }
     }.runTaskLater(plugin, 20L * standby);
