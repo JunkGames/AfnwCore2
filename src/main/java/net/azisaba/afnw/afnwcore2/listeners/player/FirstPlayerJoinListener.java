@@ -1,18 +1,24 @@
 package net.azisaba.afnw.afnwcore2.listeners.player;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Event handlers for first-time participants
  * @author m2en
  * @see org.bukkit.event.Listener
  */
-public class FirstPlayerJoinListener implements Listener {
+public record FirstPlayerJoinListener(JavaPlugin plugin) implements Listener {
 
     /**
      * A light introduction to how to play for new players who join for the first time
@@ -23,16 +29,17 @@ public class FirstPlayerJoinListener implements Listener {
         Player p = e.getPlayer();
         if(p.hasPlayedBefore()) return;
 
-        String[] firstMessage = {
-                ChatColor.GOLD +
-                """
-                Afnwへようこそ!
-                奈落の世界を開拓するマルチサーバーです。まず初めにチュートリアルワールドを進んでみましょう。
-                なお、詳しい遊び方はアジ鯖公式Wikiをご覧ください。
-                https://wiki.azisaba.net/wiki/
-                """
-        };
+        p.sendMessage(Component.text("Afnwへようこそ!", NamedTextColor.AQUA));
+        p.sendMessage(Component.text("周りは奈落、基本的に投票でしかアイテムを入手できない世界で、他のプレイヤーと協力して発展を目指すマルチサーバーです。", NamedTextColor.AQUA));
+        p.sendMessage(Component.text("まずはチュートリアルワールドを進んでみましょう!", NamedTextColor.AQUA));
+        p.sendMessage(Component.text("(このチュートリアルワールドは /tutorial でいつでも来れます。)", NamedTextColor.AQUA));
 
-        p.sendMessage(firstMessage);
+        FileConfiguration config = plugin().getConfig();
+        World tutorial = Bukkit.getWorld(config.getString("tp.tutorial_world_name", "tutorial"));
+        if (tutorial == null) {
+            throw new NullPointerException("Tutorial World could not be found");
+        }
+
+        p.teleport(tutorial.getSpawnLocation());
     }
 }

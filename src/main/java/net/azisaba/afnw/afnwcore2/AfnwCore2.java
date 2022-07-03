@@ -27,7 +27,7 @@ public class AfnwCore2 extends JavaPlugin {
         pluginEvent.registerEvents(new JoinListener(), this);
         pluginEvent.registerEvents(new QuitListener(), this);
         pluginEvent.registerEvents(new DeathListener(), this);
-        pluginEvent.registerEvents(new FirstPlayerJoinListener(), this);
+        pluginEvent.registerEvents(new FirstPlayerJoinListener(this), this);
         pluginEvent.registerEvents(new AFKListener(this), this);
         /* listeners - block */
         pluginEvent.registerEvents(new CropsBreakCanceller(), this);
