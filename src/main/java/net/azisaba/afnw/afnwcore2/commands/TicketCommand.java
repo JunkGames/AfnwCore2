@@ -1,14 +1,19 @@
 package net.azisaba.afnw.afnwcore2.commands;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import net.azisaba.afnw.afnwcore2.util.item.AfnwTicket;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +35,6 @@ public record TicketCommand(JavaPlugin plugin) implements CommandExecutor {
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        // TODO: パーミッションチェックの導入
         if(!(command.getName().equals("ticket"))) {
             return true;
         }
@@ -58,8 +62,22 @@ public record TicketCommand(JavaPlugin plugin) implements CommandExecutor {
                     break;
                 }
 
+                Inventory inv = sendTarget.getInventory();
+
+                if(inv.firstEmpty() == -1) {
+                    LocalDateTime date = LocalDateTime.now();
+                    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                    String dateString = dateFormat.format(date);
+                    sendTarget.sendMessage(Component.text("インベントリが満杯でチケットを入手できませんでした。\nこのチャットの画像を公式Discord \"#補填 | Afnw鯖\" に送ってください。", NamedTextColor.RED));
+                    sendTarget.sendMessage(ChatColor.RED + "MCID: " + ChatColor.WHITE + sendTarget.getName());
+                    sendTarget.sendMessage(ChatColor.RED + "UUID: " + ChatColor.WHITE + sendTarget.getUniqueId());
+                    sendTarget.sendMessage(ChatColor.RED + "日時: " + ChatColor.WHITE + dateString);
+                    break;
+                }
+
+
                 for (int i = 0; i < ticketSize; i++) {
-                    sendTarget.getInventory().addItem(AfnwTicket.afnwTicket);
+                    inv.addItem(AfnwTicket.afnwTicket);
                 }
 
                 // 成功した趣旨の情報送信
