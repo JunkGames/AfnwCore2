@@ -4,6 +4,7 @@ import net.azisaba.afnw.afnwcore2.AfnwCore2;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -42,7 +43,7 @@ public class JoinListener implements Listener {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    p.kick(Component.text("Bedrock-Blockが発動しました。"));
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ekick " + p.getName() + " Bedrock Blockが発動しました");
                 }
             }.runTaskLater(JavaPlugin.getPlugin(AfnwCore2.class), 20L * 15);
         }
