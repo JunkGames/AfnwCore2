@@ -44,6 +44,7 @@ public class AfnwCore2 extends JavaPlugin {
         Objects.requireNonNull(getCommand("void")).setExecutor(new VoidCommand(this));
         Objects.requireNonNull(getCommand("tutorial")).setExecutor(new TutorialCommand(this));
         Objects.requireNonNull(getCommand("bed")).setExecutor(new BedCommand());
+        Objects.requireNonNull(getCommand("pc")).setExecutor(new EnderchestCommand());
 
         getLogger().info("[AfnwCore2] Enabled!");
     }
