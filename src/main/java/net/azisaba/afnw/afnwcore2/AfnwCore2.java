@@ -9,6 +9,7 @@ import net.azisaba.afnw.afnwcore2.listeners.player.QuitListener;
 import net.azisaba.afnw.afnwcore2.listeners.block.CropsBreakCanceller;
 import net.azisaba.afnw.afnwcore2.listeners.block.SaplingBreakCanceller;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
+import net.azisaba.afnw.afnwcore2.util.data.PlayerDataSave;
 import org.bukkit.Bukkit;
 import org.bukkit.block.data.type.Bed;
 import org.bukkit.plugin.PluginManager;
@@ -26,6 +27,9 @@ public class AfnwCore2 extends JavaPlugin {
         // player-data.yml
         PlayerData data = new PlayerData(this, "player-data.yml");
         data.saveDefaultPlayerData();
+
+        PlayerDataSave dataSchedule = new PlayerDataSave(this, data);
+        dataSchedule.playerData();
 
         // register listeners
         PluginManager pluginEvent = Bukkit.getPluginManager();
