@@ -8,6 +8,7 @@ import net.azisaba.afnw.afnwcore2.listeners.player.JoinListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.QuitListener;
 import net.azisaba.afnw.afnwcore2.listeners.block.CropsBreakCanceller;
 import net.azisaba.afnw.afnwcore2.listeners.block.SaplingBreakCanceller;
+import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.block.data.type.Bed;
 import org.bukkit.plugin.PluginManager;
@@ -22,24 +23,28 @@ public class AfnwCore2 extends JavaPlugin {
         // config.yml
         saveDefaultConfig();
 
+        // player-data.yml
+        PlayerData data = new PlayerData(this, "player-data.yml");
+        data.saveDefaultPlayerData();
+
         // register listeners
         PluginManager pluginEvent = Bukkit.getPluginManager();
         /* listeners - player */
-        pluginEvent.registerEvents(new JoinListener(), this);
+        pluginEvent.registerEvents(new JoinListener(data), this);
         pluginEvent.registerEvents(new QuitListener(), this);
         pluginEvent.registerEvents(new DeathListener(), this);
-        pluginEvent.registerEvents(new FirstPlayerJoinListener(this), this);
+        pluginEvent.registerEvents(new FirstPlayerJoinListener(this, data), this);
         pluginEvent.registerEvents(new AFKListener(this), this);
         /* listeners - block */
         pluginEvent.registerEvents(new CropsBreakCanceller(), this);
         pluginEvent.registerEvents(new SaplingBreakCanceller(), this);
 
         // register commands
-        Objects.requireNonNull(getCommand("afnw")).setExecutor(new AfnwCommand(this));
+        Objects.requireNonNull(getCommand("afnw")).setExecutor(new AfnwCommand(this, data));
         Objects.requireNonNull(getCommand("vote")).setExecutor(new VoteCommand());
         Objects.requireNonNull(getCommand("respawn")).setExecutor(new RespawnCommand());
         Objects.requireNonNull(getCommand("config_reload")).setExecutor(new ConfigReloadCommand(this));
-        Objects.requireNonNull(getCommand("ticket")).setExecutor(new TicketCommand(this));
+        Objects.requireNonNull(getCommand("ticket")).setExecutor(new TicketCommand(this, data));
         Objects.requireNonNull(getCommand("lobby")).setExecutor(new LobbyCommand(this));
         Objects.requireNonNull(getCommand("void")).setExecutor(new VoidCommand(this));
         Objects.requireNonNull(getCommand("tutorial")).setExecutor(new TutorialCommand(this));

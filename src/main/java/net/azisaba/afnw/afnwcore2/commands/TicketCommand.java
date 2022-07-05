@@ -2,6 +2,7 @@ package net.azisaba.afnw.afnwcore2.commands;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.azisaba.afnw.afnwcore2.util.item.AfnwTicket;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -23,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
  * @author m2en
  * @see org.bukkit.command.CommandExecutor
  */
-public record TicketCommand(JavaPlugin plugin) implements CommandExecutor {
+public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements CommandExecutor {
 
     /**
      * /ticket send, give
@@ -79,6 +80,13 @@ public record TicketCommand(JavaPlugin plugin) implements CommandExecutor {
                 for (int i = 0; i < ticketSize; i++) {
                     inv.addItem(AfnwTicket.afnwTicket);
                 }
+
+                // プレイヤーデータの保存
+                FileConfiguration dataFile = playerData.getPlayerData();
+                int voteCount = dataFile.getInt(sendTarget.getUniqueId().toString());
+                voteCount++;
+                dataFile.set(sendTarget.getUniqueId().toString(), voteCount);
+                playerData.savePlayerData();
 
                 // 成功した趣旨の情報送信
                 sender.sendMessage(Component.text(sendTarget.getName() + "へのチケット送信に成功しました。配布数:" + ticketSize));

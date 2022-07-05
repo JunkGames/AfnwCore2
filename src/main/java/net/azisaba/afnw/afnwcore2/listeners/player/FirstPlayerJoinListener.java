@@ -1,5 +1,6 @@
 package net.azisaba.afnw.afnwcore2.listeners.player;
 
+import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -18,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author m2en
  * @see org.bukkit.event.Listener
  */
-public record FirstPlayerJoinListener(JavaPlugin plugin) implements Listener {
+public record FirstPlayerJoinListener(JavaPlugin plugin, PlayerData playerData) implements Listener {
 
     /**
      * A light introduction to how to play for new players who join for the first time
@@ -41,5 +42,9 @@ public record FirstPlayerJoinListener(JavaPlugin plugin) implements Listener {
         }
 
         p.teleport(tutorial.getSpawnLocation());
+        FileConfiguration dataFile = playerData.getPlayerData();
+        dataFile.set(p.getUniqueId().toString(), 0);
+        playerData.savePlayerData();
+        p.sendMessage(Component.text("プレイヤーデータが作成されました。", NamedTextColor.YELLOW));
     }
 }

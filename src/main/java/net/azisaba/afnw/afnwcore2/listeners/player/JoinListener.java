@@ -1,10 +1,12 @@
 package net.azisaba.afnw.afnwcore2.listeners.player;
 
 import net.azisaba.afnw.afnwcore2.AfnwCore2;
+import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -21,7 +23,8 @@ import java.time.Duration;
  * @author m2en
  * @see org.bukkit.event.Listener
  */
-public class JoinListener implements Listener {
+public record JoinListener(PlayerData playerData) implements Listener {
+
 
     /**
      * Send player's name
@@ -46,6 +49,15 @@ public class JoinListener implements Listener {
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ekick " + p.getName() + " Bedrock Blockが発動しました");
                 }
             }.runTaskLater(JavaPlugin.getPlugin(AfnwCore2.class), 20L * 15);
+        }
+
+        if(!p.hasPlayedBefore()) return;
+        FileConfiguration dataFile = playerData.getPlayerData();
+        if(!dataFile.isString(p.getUniqueId().toString())) {
+            Bukkit.getLogger().warning(p.getName() + "のプレイヤーデータが存在しません。作成します。");
+            dataFile.set(p.getUniqueId().toString(), 0);
+            playerData.savePlayerData();
+            p.sendMessage(Component.text("プレイヤーデータが作成されました。", NamedTextColor.YELLOW));
         }
     }
 
