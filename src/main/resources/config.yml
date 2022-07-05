@@ -1,4 +1,4 @@
-# AfnwCore2 Config File
+# AfnwCore2 Config File:
 # AfnwCore2に関するいろんな設定を変更できるファイルです。パーミッションの設定はここでは行えません。
 # 編集した後はサーバーを再起動するか、プラグインを再リロードするか、コマンド "/config_reload" を実行してください。
 # デフォルト値は万が一指定されていないときにAfnwCore2が代入する値です。(World名のConfigではデフォルト値が入ってもワールドが見つからない場合はNullPointerException(例外)としてクラッシュします。)
@@ -15,7 +15,7 @@ vote: # 投票周りの設定
 
 tp:
   standby: 10
-  # TPコマンド(not /tp)を使用した際の待機時間を病で指定します。int(数)ではない場合はエラーが発生します。デフォルト: 10
+  # TPコマンド(not /tp)を使用した際の待機時間を秒で指定します。int(数)ではない場合はエラーが発生します。デフォルト: 10
   lobby_world_name: "lobby"
   # ロビーワールドの名前を指定します。デフォルト:lobby
   void_world_name: "afnw"
