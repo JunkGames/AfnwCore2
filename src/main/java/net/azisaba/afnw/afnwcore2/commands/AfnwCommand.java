@@ -47,7 +47,6 @@ public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements C
       case END_PORTAL:
       case KNOWLEDGE_BOOK:
       case DEBUG_STICK:
-      case BUNDLE:
       case AIR:
       case VOID_AIR:
       case CAVE_AIR:
