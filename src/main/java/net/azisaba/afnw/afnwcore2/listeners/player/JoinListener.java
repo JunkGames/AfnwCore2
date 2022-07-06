@@ -19,7 +19,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.time.Duration;
 
 /**
- * Send the name of the player who logged in
+ * サーバーに参加したプレイヤーに関するクラスです。
  * @author m2en
  * @see org.bukkit.event.Listener
  */
@@ -27,7 +27,7 @@ public record JoinListener(PlayerData playerData) implements Listener {
 
 
     /**
-     * Send player's name
+     * 参加したプレイヤーのログインメッセージなど
      * @param e Target player for PlayerJoinEvent
      */
     @EventHandler(priority = EventPriority.NORMAL)

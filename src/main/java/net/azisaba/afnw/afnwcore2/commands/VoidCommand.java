@@ -63,7 +63,7 @@ public record VoidCommand(JavaPlugin plugin) implements CommandExecutor {
       @Override
       public void run() {
         p.teleport(main.getSpawnLocation());
-        p.sendMessage(Component.text("メインワールドへテレポートしました。", NamedTextColor.AQUA));
+        p.sendMessage(Component.text("メインワールドへテレポートしました。", NamedTextColor.YELLOW));
       }
     }.runTaskLater(plugin, 20L * standby);
 

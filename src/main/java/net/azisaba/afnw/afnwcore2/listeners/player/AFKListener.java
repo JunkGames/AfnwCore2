@@ -15,7 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Auto teleport afk point
+ * プレイヤーがAFK状態になったら自動でAFKポイントにTPするクラス
  * @param plugin AfnwCore2
  * @see org.bukkit.event.Listener
  * @author m2en
@@ -23,7 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public record AFKListener(JavaPlugin plugin) implements Listener {
 
   /**
-   * AFK Events
+   * AFK状態になったら自動でAFKポイントにTPするイベント
    * @param e net.ess3.api.events.AfkStatusChangeEvent
    */
   @EventHandler(priority = EventPriority.HIGHEST)

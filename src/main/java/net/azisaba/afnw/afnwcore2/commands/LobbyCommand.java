@@ -14,7 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Teleport Lobby Command
+ * コマンド "lobby" の実装レコードです。
  *
  * @see org.bukkit.command.CommandExecutor
  * @author m2en
@@ -66,7 +66,7 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
       @Override
       public void run() {
         p.teleport(lobby.getSpawnLocation());
-        p.sendMessage(Component.text("ロビーへテレポートしました。", NamedTextColor.AQUA));
+        p.sendMessage(Component.text("ロビーへテレポートしました。", NamedTextColor.YELLOW));
       }
     }.runTaskLater(plugin, 20L * standby);
 

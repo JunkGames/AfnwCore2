@@ -13,6 +13,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * コマンド "tutorial" の実装レコードです。
+ * @param plugin
+ */
 public record TutorialCommand(JavaPlugin plugin) implements CommandExecutor {
 
   @Override
@@ -52,7 +56,7 @@ public record TutorialCommand(JavaPlugin plugin) implements CommandExecutor {
       @Override
       public void run() {
         p.teleport(tutorial.getSpawnLocation());
-        p.sendMessage(Component.text("チュートリアルへテレポートしました。", NamedTextColor.AQUA));
+        p.sendMessage(Component.text("チュートリアルへテレポートしました。", NamedTextColor.YELLOW));
       }
     }.runTaskLater(plugin, 20L * standby);
 

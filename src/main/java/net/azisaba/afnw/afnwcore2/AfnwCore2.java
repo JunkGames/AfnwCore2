@@ -17,33 +17,48 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
+/**
+ * AfnwCore2 のメインクラス
+ *
+ * @author m2en
+ * @see org.bukkit.plugin.java.JavaPlugin
+ */
 public class AfnwCore2 extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // config.yml
-        saveDefaultConfig();
+        getLogger().info("起動開始...");
 
-        // player-data.yml
+        // コンフィグのロード
+        saveDefaultConfig();
+        getLogger().info("コンフィグ ロード完了");
+
+        // プレイヤーデータのロード
         PlayerData data = new PlayerData(this, "player-data.yml");
         data.saveDefaultPlayerData();
+        getLogger().info("プレイヤーデータ ロード完了");
 
+        // 自動保存の設定
         PlayerDataSave dataSchedule = new PlayerDataSave(this, data);
         dataSchedule.playerData();
+        getLogger().info("プレイヤーデータ自動保存 設定完了");
 
-        // register listeners
+        // Listenerの確定
         PluginManager pluginEvent = Bukkit.getPluginManager();
-        /* listeners - player */
+        getLogger().info("Listener 設定中....");
+        /* プレイヤーリスナー */
         pluginEvent.registerEvents(new JoinListener(data), this);
         pluginEvent.registerEvents(new QuitListener(), this);
         pluginEvent.registerEvents(new DeathListener(), this);
         pluginEvent.registerEvents(new FirstPlayerJoinListener(this, data), this);
         pluginEvent.registerEvents(new AFKListener(this), this);
-        /* listeners - block */
+        getLogger().info("Listener 設定完了");
+        /* ブロックリスナー */
         pluginEvent.registerEvents(new CropsBreakCanceller(), this);
         pluginEvent.registerEvents(new SaplingBreakCanceller(), this);
+        getLogger().info("Listener(Canceller) 設定完了");
 
-        // register commands
+        // コマンドの設定
         Objects.requireNonNull(getCommand("afnw")).setExecutor(new AfnwCommand(this, data));
         Objects.requireNonNull(getCommand("vote")).setExecutor(new VoteCommand());
         Objects.requireNonNull(getCommand("respawn")).setExecutor(new RespawnCommand());
@@ -55,10 +70,13 @@ public class AfnwCore2 extends JavaPlugin {
         Objects.requireNonNull(getCommand("bed")).setExecutor(new BedCommand(this));
         Objects.requireNonNull(getCommand("pc")).setExecutor(new EnderchestCommand());
         Objects.requireNonNull(getCommand("trash")).setExecutor(new TrashCommand(this));
+        getLogger().info("コマンド 設定完了");
 
-        getLogger().info("[AfnwCore2] Enabled!");
+        getLogger().info("正常に起動しました。");
     }
 
     @Override
-    public void onDisable() { getLogger().info("[AfnwCore2] Disabled!"); }
+    public void onDisable() {
+        getLogger().info("正常に終了しました。");
+    }
 }

@@ -38,7 +38,7 @@ public class SaplingBreakCanceller implements Listener {
         if(b.getType() == Material.AZALEA) return;
 
         if(p.hasPermission("afnw.bypass.break.sapling")) {
-            p.sendMessage(Component.text("苗木保護機能をbypassしました。").color(NamedTextColor.GOLD));
+            p.sendMessage(Component.text("苗木保護機能を回避しました。").color(NamedTextColor.GOLD));
             Logger.getLogger("bypass:sapling").info(p.getName() + "break sapling! (bypass canceller!)");
             return;
         }
@@ -59,9 +59,7 @@ public class SaplingBreakCanceller implements Listener {
 
         if(!Tag.CROPS.isTagged(b.getLocation().add(0, 1, 0).getBlock().getType())) return;
         if(p.hasPermission("afnw.bypass.break.arable")) {
-            p.sendMessage(Component.text("耕地保護機能(crops)をbypassしました。").color(NamedTextColor.GOLD));
-            Logger.getLogger("bypass:crops").info(p.getName() + "break crops! (bypass canceller!)");
-            e.setCancelled(false);
+            p.sendMessage(Component.text("耕地保護機能を回避しました。").color(NamedTextColor.GOLD));
             return;
         }
 

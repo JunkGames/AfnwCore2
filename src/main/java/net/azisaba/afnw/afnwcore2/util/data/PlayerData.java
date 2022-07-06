@@ -12,8 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
 /**
- * Player data class to store vote counts, etc.
- *
+ * プレイヤーデータのセーブとロードを行うクラスです。
  * @author m2en
  */
 public class PlayerData {
@@ -24,10 +23,10 @@ public class PlayerData {
   private final Plugin plugin;
 
   /**
-   * Place player data under plugins/AfnwCore2.
+   * データファイル名等を格納します。
    *
-   * @param plugin Main Class Arguments
-   * @param fileName Player data file name
+   * @param plugin メインクラス
+   * @param fileName プレイヤーデータのファイル名
    */
   public PlayerData(Plugin plugin, String fileName) {
     this.plugin = plugin;
@@ -36,8 +35,8 @@ public class PlayerData {
   }
 
   /**
-   * If player data does not exist, the file is regenerated.
-   * If player data does not exist in the production environment or while the system is open to the public, it will be restored from the backup server.
+   * プレイヤーデータの設定を行います。
+   * * プレイヤーデータが存在しない場合は plugins/AfnwCore2 配下にデータファイルを作成します。
    */
   public void saveDefaultPlayerData() {
     if(!dataFile.exists()) {
@@ -50,8 +49,8 @@ public class PlayerData {
   }
 
   /**
-   * Retrieve player data.
-   * @return Returns player data. If not present, reloads.
+   * プレイヤーデータをロードします。
+   * @return プレイヤーデータ(FileConfigurationとしてロードされたものを返します)
    */
   public FileConfiguration getPlayerData() {
     if(playerData == null) {
@@ -62,7 +61,7 @@ public class PlayerData {
   }
 
   /**
-   * Loads player data.
+   * プレイヤーデータを再読込します。
    */
   public void reloadPlayerData() {
     playerData = YamlConfiguration.loadConfiguration(dataFile);
@@ -77,7 +76,7 @@ public class PlayerData {
   }
 
   /**
-   * Save player data.
+   * プレイヤーデータをセーブします。
    */
   public void savePlayerData() {
     if(playerData == null) {

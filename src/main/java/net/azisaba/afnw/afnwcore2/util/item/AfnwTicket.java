@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Create AfnwTicket
+ * AfnwTicketを生成します。
  *
  * @author m2en
- * @param plugin Main Class Arguments
+ * @param plugin メインクラス
  */
 public record AfnwTicket(AfnwCore2 plugin) {
 

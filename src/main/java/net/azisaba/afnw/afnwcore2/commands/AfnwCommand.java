@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * /afnw - Exchange tickets for items / scaffolding
+ * コマンド "afnw" の実装レコードです。
  *
  * @author m2en
  * @see org.bukkit.command.CommandExecutor
@@ -47,44 +47,24 @@ public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements C
             sender.sendMessage(Component.text("/afnwコマンドはプレイヤーのみ実行可能です。").color(NamedTextColor.RED));
             return true;
         }
-        /**
         if(!(sender.hasPermission("afnw.command.afnw"))) {
             return true;
         }
-        */
 
         Inventory inv = ((Player) sender).getInventory();
         int firstInv = inv.firstEmpty();
         if (firstInv == -1) {
-            sender.sendMessage(Component.text("インベントリに空きがありません。").color(NamedTextColor.RED));
+            sender.sendMessage(Component.text("インベントリに空きがありません。十分な空きを作ってから交換してください。").color(NamedTextColor.RED));
             return true;
         }
         if (!inv.containsAtLeast(AfnwTicket.afnwTicket, 1)) {
-            sender.sendMessage(Component.text("チケットが見つかりません。").color(NamedTextColor.RED));
+            sender.sendMessage(Component.text("チケットが見つかりません。インベントリにチケットがあるか確認してください。").color(NamedTextColor.RED));
             return true;
         }
 
         FileConfiguration config = plugin.getConfig();
-        if (!(config.isInt("vote.item-size")) && !(config.isInt("vote.scaffold-size"))) {
-            throw new Error("configの値が数値ではありません。対象:vote> item-size, scaffold-size");
-        }
-
         int itemSize = config.getInt("vote.item-size", 1);
         int scaffoldSize = config.getInt("vote.scaffold-size", 8);
-        int bonusLine = config.getInt("vote.bonus-line", 9);
-
-        FileConfiguration dataFile = playerData.getPlayerData();
-        int voteCount = dataFile.getInt(((Player) sender).getUniqueId().toString());
-        if(voteCount >= bonusLine) {
-            for (int i = 0; i < 10; i++) {
-                inv.addItem(AfnwTicket.afnwTicket);
-            }
-            inv.addItem(new ItemStack(Material.NETHER_STAR));
-            sender.sendMessage(Component.text("★: 投票ボーナスを獲得しました。チケット10枚とネザースターを獲得しました。").color(NamedTextColor.YELLOW));
-            sender.sendMessage(Component.text("★: 投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.YELLOW));
-        }
-        dataFile.set(((Player) sender).getUniqueId().toString(), 0);
-        playerData.savePlayerData();
 
         SecureRandom random;
         ItemStack afnwItem;

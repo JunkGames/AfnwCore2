@@ -15,14 +15,14 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Event handlers for first-time participants
+ * 初めて参加したプレイヤーデータに関するクラス
  * @author m2en
  * @see org.bukkit.event.Listener
  */
 public record FirstPlayerJoinListener(JavaPlugin plugin, PlayerData playerData) implements Listener {
 
     /**
-     * A light introduction to how to play for new players who join for the first time
+     * 初めて参加したプレイヤーを自動的にチュートリアルワールドへTPし、プレイヤーデータを生成します。
      * @param e Target player for PlayerJoinEvent
      */
     @EventHandler(priority = EventPriority.HIGH)

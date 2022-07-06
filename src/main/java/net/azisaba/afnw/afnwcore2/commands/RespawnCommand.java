@@ -56,10 +56,27 @@ public class RespawnCommand implements TabExecutor {
         return true;
     }
 
+    /**
+     * Tab補完生成の補助メソッド
+     * @param stream
+     * @param s
+     * @return
+     */
     private static @NotNull List<String> filter(Stream<String> stream, String s) {
         return stream.filter(s1 -> s1.toLowerCase(Locale.ROOT).startsWith(s.toLowerCase(Locale.ROOT))).collect(Collectors.toList());
     }
 
+    /**
+     * オンラインプレイヤーのTab補完リストを生成するメソッド
+     * @param sender Source of the command.  For players tab-completing a
+     *     command inside of a command block, this will be the player, not
+     *     the command block.
+     * @param command Command which was executed
+     * @param alias The alias used
+     * @param args The arguments passed to the command, including final
+     *     partial argument to be completed and command label
+     * @return オンラインプレイヤーのリストを返す
+     */
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         if(args.length == 0) {
