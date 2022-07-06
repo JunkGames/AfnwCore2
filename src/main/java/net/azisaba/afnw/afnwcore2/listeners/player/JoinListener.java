@@ -50,15 +50,6 @@ public record JoinListener(PlayerData playerData) implements Listener {
                 }
             }.runTaskLater(JavaPlugin.getPlugin(AfnwCore2.class), 20L * 15);
         }
-
-        if(!p.hasPlayedBefore()) return;
-        FileConfiguration dataFile = playerData.getPlayerData();
-        if(!dataFile.isString(p.getUniqueId().toString())) {
-            Bukkit.getLogger().warning(p.getName() + "のプレイヤーデータが存在しません。作成します。");
-            dataFile.set(p.getUniqueId().toString(), 0);
-            playerData.savePlayerData();
-            p.sendMessage(Component.text("プレイヤーデータが作成されました。", NamedTextColor.YELLOW));
-        }
     }
 
     /**
