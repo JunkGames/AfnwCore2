@@ -34,22 +34,27 @@ public record FirstPlayerJoinListener(JavaPlugin plugin, PlayerData playerData) 
           return;
       }
 
+    // 簡単な説明
     p.sendMessage(Component.text("Afnwへようこそ!", NamedTextColor.AQUA));
     p.sendMessage(Component.text("周りは奈落、基本的に投票でしかアイテムを入手できない世界で、他のプレイヤーと協力して発展を目指すマルチサーバーです。",
         NamedTextColor.AQUA));
     p.sendMessage(Component.text("まずはチュートリアルワールドを進んでみましょう!", NamedTextColor.AQUA));
     p.sendMessage(Component.text("(このチュートリアルワールドは /tutorial でいつでも来れます。)", NamedTextColor.AQUA));
 
+    // チュートリアルワールドの特定
     FileConfiguration config = plugin().getConfig();
     World tutorial = Bukkit.getWorld(config.getString("tp.tutorial_world_name", "tutorial"));
     if (tutorial == null) {
       throw new NullPointerException("Tutorial World could not be found");
     }
 
-    p.teleport(tutorial.getSpawnLocation());
+    // プレイヤーデータの生成
     FileConfiguration dataFile = playerData.getPlayerData();
     dataFile.set(p.getUniqueId().toString(), 0);
     playerData.savePlayerData();
+
+    // テレポートとプレイヤーデータ作成通知
+    p.teleport(tutorial.getSpawnLocation());
     p.sendMessage(Component.text("プレイヤーデータが作成されました。", NamedTextColor.YELLOW));
   }
 }

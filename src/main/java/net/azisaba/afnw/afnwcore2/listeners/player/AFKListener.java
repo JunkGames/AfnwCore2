@@ -35,6 +35,7 @@ public record AFKListener(JavaPlugin plugin) implements Listener {
       return;
     }
 
+    // ワールドの特定、AFKポイントの設定
     FileConfiguration config = plugin.getConfig();
     World afkWorld = Bukkit.getWorld(config.getString("afk.afk_world_name", "afk"));
     if (afkWorld == null) {
@@ -47,6 +48,7 @@ public record AFKListener(JavaPlugin plugin) implements Listener {
     y++;
     Location afkPoint = new Location(afkWorld, x, y, z);
 
+    // AFKポイントにTPする
     if (e.getCause() == Cause.MOVE || e.getCause() == Cause.QUIT) {
       return;
     } else if (e.getCause() == Cause.ACTIVITY || e.getCause() == Cause.COMMAND) {

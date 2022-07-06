@@ -38,20 +38,20 @@ public record JoinListener(PlayerData playerData) implements Listener {
     sendPlayerTitle(p);
     e.joinMessage(Component.text(p.getName() + "がログインしました").color(NamedTextColor.YELLOW));
 
-    // 統合版のプレイヤーをブロックする
+    // 統合版のプレイヤーをブロックする(Bedrock Blocker)
     if (p.getName().startsWith(".")) {
         if (p.getName().equals(".Meru92a")) {
             return;
         }
       p.sendMessage(Component.text(
-          "Minecraft Bedrock Edition(統合版)での接続を検知しました。\n大変申し訳ありませんが統合版でAfnwをプレイすることはできません。Java版での接続をお願いします。15秒後自動的にロビーへ戻ります。",
+          "Minecraft Bedrock Edition(統合版)での接続を検知しました。\n大変申し訳ありませんが統合版でAfnwをプレイすることはできません。Java版での接続をお願いします。15秒後自動的にアジ鯖ロビーへ戻ります。",
           NamedTextColor.RED));
 
       new BukkitRunnable() {
         @Override
         public void run() {
           Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-              "ekick " + p.getName() + " Bedrock Blockが発動しました");
+              "ekick " + p.getName() + " Bedrock Blockerが発動しました");
         }
       }.runTaskLater(JavaPlugin.getPlugin(AfnwCore2.class), 20L * 15);
     }
@@ -65,10 +65,15 @@ public record JoinListener(PlayerData playerData) implements Listener {
    */
   @Deprecated
   public void sendPlayerTitle(@NonNull Player p) {
+    // タイトルの表示時間の設定
     final Title.Times times = Title.Times.of(Duration.ofMillis(500), Duration.ofMillis(3000),
         Duration.ofMillis(1000));
+
+    // タイトルの設定
     final Title title = Title.title(Component.text("Afnwへようこそ!").color(NamedTextColor.AQUA),
         Component.empty(), times);
+
+    // タイトルの表示
     p.showTitle(title);
   }
 }

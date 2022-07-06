@@ -92,6 +92,7 @@ public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements
 
         FileConfiguration dataFile = playerData.getPlayerData();
         int voteCount = dataFile.getInt((sendTarget.getUniqueId().toString()));
+        voteCount++;
         if (voteCount >= bonusLine) {
           for (int i = 0; i < 10; i++) {
             inv.addItem(AfnwTicket.afnwTicket);
@@ -102,8 +103,9 @@ public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements
           sender.sendMessage(
               Component.text("投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.LIGHT_PURPLE));
           logger.info(sendTarget.getName() + "が投票ボーナスを獲得しました。");
+          dataFile.set(sendTarget.getUniqueId().toString(), 0);
         }
-        dataFile.set(sendTarget.getUniqueId().toString(), 0);
+        dataFile.set(sendTarget.getUniqueId().toString(), voteCount);
         playerData.savePlayerData();
 
         // 成功した趣旨の情報送信
@@ -145,8 +147,6 @@ public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements
         giveTarget.sendMessage(Component.text("チケットを入手しました。(補填)/afnwを実行することでアイテムと交換することができます。",
             NamedTextColor.YELLOW));
       }
-
-      // TODO: 連続投票ボーナス数の表示処理の作成 : /ticket show
     }
     return true;
   }

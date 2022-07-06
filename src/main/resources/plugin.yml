@@ -45,6 +45,8 @@ permissions:
     default: not op
   afnw.command.pc:
     default: not op
+  afnw.command.bonus:
+    default: not op
 
 commands:
   afnw:
@@ -80,3 +82,7 @@ commands:
     aliases:
       - haruneko
       - gomi
+  bonus:
+    description: ボーナス状況の確認を行います。
+    aliases:
+      - votebonus
