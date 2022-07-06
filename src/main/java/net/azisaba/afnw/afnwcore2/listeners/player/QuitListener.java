@@ -10,18 +10,20 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  * ログアウトしたプレイヤーに関するクラス
+ *
  * @author m2en
  * @see org.bukkit.event.Listener
  */
 public class QuitListener implements Listener {
 
-    /**
-     * ログアウト通知を行います。
-     * @param e Target player for PlayerQuitEvent
-     */
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onQuit(PlayerQuitEvent e) {
-        Player p = e.getPlayer();
-        e.quitMessage(Component.text(p.getName() + "がログアウトしました。").color(NamedTextColor.YELLOW));
-    }
+  /**
+   * ログアウト通知を行います。
+   *
+   * @param e Target player for PlayerQuitEvent
+   */
+  @EventHandler(priority = EventPriority.NORMAL)
+  public void onQuit(PlayerQuitEvent e) {
+    Player p = e.getPlayer();
+    e.quitMessage(Component.text(p.getName() + "がログアウトしました。").color(NamedTextColor.YELLOW));
+  }
 }

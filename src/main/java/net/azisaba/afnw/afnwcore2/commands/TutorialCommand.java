@@ -15,12 +15,14 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * コマンド "tutorial" の実装レコードです。
+ *
  * @param plugin
  */
 public record TutorialCommand(JavaPlugin plugin) implements CommandExecutor {
 
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command,
+      @NotNull String label, @NotNull String[] args) {
     if (!(command.getName().equals("tutorial"))) {
       return false;
     }

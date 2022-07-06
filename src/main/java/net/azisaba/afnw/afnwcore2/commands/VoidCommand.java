@@ -22,14 +22,16 @@ public record VoidCommand(JavaPlugin plugin) implements CommandExecutor {
 
   /**
    * /void - sender teleport to lobby
-   * @param sender Source of the command
+   *
+   * @param sender  Source of the command
    * @param command Command which was executed
-   * @param label Alias of the command which was used
-   * @param args Passed command arguments
+   * @param label   Alias of the command which was used
+   * @param args    Passed command arguments
    * @return command boolean
    */
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command,
+      @NotNull String label, @NotNull String[] args) {
     if (!(command.getName().equals("void"))) {
       return false;
     }
@@ -52,9 +54,10 @@ public record VoidCommand(JavaPlugin plugin) implements CommandExecutor {
     if (p.getWorld() == main) {
       sender.sendMessage(Component.text("既にメインワールドにいるため、テレポートできません。", NamedTextColor.RED));
       return false;
-    } else if(p.hasPermission("afnw.bypass.standby")) {
+    } else if (p.hasPermission("afnw.bypass.standby")) {
       p.teleport(main.getSpawnLocation());
-      sender.sendMessage(Component.text("メインワールドへテレポートしました。(Admin/Mod権限をもっているため、待機時間は発生しません。)", NamedTextColor.GREEN));
+      sender.sendMessage(Component.text("メインワールドへテレポートしました。(Admin/Mod権限をもっているため、待機時間は発生しません。)",
+          NamedTextColor.GREEN));
       return true;
     }
 

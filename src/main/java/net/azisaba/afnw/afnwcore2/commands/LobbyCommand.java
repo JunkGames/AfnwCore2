@@ -16,23 +16,25 @@ import org.jetbrains.annotations.NotNull;
 /**
  * コマンド "lobby" の実装レコードです。
  *
- * @see org.bukkit.command.CommandExecutor
- * @author m2en
  * @param plugin AfnwCore2
+ * @author m2en
+ * @see org.bukkit.command.CommandExecutor
  */
 public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
 
   /**
    * /lobby - sender teleport to lobby
-   * @param sender Source of the command
+   *
+   * @param sender  Source of the command
    * @param command Command which was executed
-   * @param label Alias of the command which was used
-   * @param args Passed command arguments
+   * @param label   Alias of the command which was used
+   * @param args    Passed command arguments
    * @return command boolean
    */
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    if(!(command.getName().equals("lobby"))) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command,
+      @NotNull String label, @NotNull String[] args) {
+    if (!(command.getName().equals("lobby"))) {
       return false;
     }
 
@@ -41,23 +43,24 @@ public record LobbyCommand(JavaPlugin plugin) implements CommandExecutor {
       return false;
     }
 
-    if(!(sender.hasPermission("afnw.command.lobby"))) {
+    if (!(sender.hasPermission("afnw.command.lobby"))) {
       return false;
     }
 
     FileConfiguration config = plugin.getConfig();
     World lobby = Bukkit.getWorld(config.getString("tp.lobby_world_name", "lobby"));
     int standby = config.getInt("tp.standby", 10);
-    if(lobby == null) {
+    if (lobby == null) {
       throw new NullPointerException("Lobby World could not be found");
     }
 
-    if(p.getWorld() == lobby) {
+    if (p.getWorld() == lobby) {
       sender.sendMessage(Component.text("既にロビーにいるため、テレポートできません。", NamedTextColor.RED));
       return false;
-    } else if(p.hasPermission("afnw.bypass.standby")) {
+    } else if (p.hasPermission("afnw.bypass.standby")) {
       p.teleport(lobby.getSpawnLocation());
-      sender.sendMessage(Component.text("ロビーへテレポートしました。(Admin/Mod権限をもっているため、待機時間は発生しません。)", NamedTextColor.GREEN));
+      sender.sendMessage(
+          Component.text("ロビーへテレポートしました。(Admin/Mod権限をもっているため、待機時間は発生しません。)", NamedTextColor.GREEN));
       return true;
     }
 

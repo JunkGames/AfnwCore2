@@ -14,7 +14,8 @@ import org.jetbrains.annotations.NotNull;
 public record TrashCommand(JavaPlugin plugin) implements CommandExecutor {
 
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, Command command, @NotNull String s, String[] strings) {
+  public boolean onCommand(@NotNull CommandSender sender, Command command, @NotNull String s,
+      String[] strings) {
     if (!(command.getName().equals("trash"))) {
       return false;
     }
@@ -31,7 +32,7 @@ public record TrashCommand(JavaPlugin plugin) implements CommandExecutor {
     FileConfiguration config = plugin.getConfig();
     String trashName = config.getString("trash.name", "ゴミ箱");
     int trashSize = config.getInt("trash.size", 54);
-    if(trashSize % 9 == 0) {
+    if (trashSize % 9 == 0) {
       config.set("trash.size", 54);
     }
 
@@ -40,6 +41,7 @@ public record TrashCommand(JavaPlugin plugin) implements CommandExecutor {
   }
 
   public void trashGUI(Player p, int size, String name) {
-    p.openInventory(Bukkit.createInventory(null, size, Component.text(name, NamedTextColor.DARK_PURPLE)));
+    p.openInventory(
+        Bukkit.createInventory(null, size, Component.text(name, NamedTextColor.DARK_PURPLE)));
   }
 }

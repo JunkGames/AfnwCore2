@@ -15,14 +15,16 @@ public class EnderchestCommand implements CommandExecutor {
 
   /**
    * 実行者のエンダーチェストをインベントリに開く
-   * @param sender Source of the command
+   *
+   * @param sender  Source of the command
    * @param command Command which was executed
-   * @param label Alias of the command which was used
-   * @param args Passed command arguments
+   * @param label   Alias of the command which was used
+   * @param args    Passed command arguments
    * @return Result of command execution
    */
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command,
+      @NotNull String label, @NotNull String[] args) {
     if (!(command.getName().equals("pc"))) {
       return false;
     }

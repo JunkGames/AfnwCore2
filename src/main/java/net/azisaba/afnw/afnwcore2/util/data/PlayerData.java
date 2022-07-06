@@ -1,31 +1,31 @@
 package net.azisaba.afnw.afnwcore2.util.data;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 
 /**
  * プレイヤーデータのセーブとロードを行うクラスです。
+ *
  * @author m2en
  */
 public class PlayerData {
 
-  private FileConfiguration playerData = null;
   private final File dataFile;
   private final String file;
   private final Plugin plugin;
+  private FileConfiguration playerData = null;
 
   /**
    * データファイル名等を格納します。
    *
-   * @param plugin メインクラス
+   * @param plugin   メインクラス
    * @param fileName プレイヤーデータのファイル名
    */
   public PlayerData(Plugin plugin, String fileName) {
@@ -35,11 +35,10 @@ public class PlayerData {
   }
 
   /**
-   * プレイヤーデータの設定を行います。
-   * * プレイヤーデータが存在しない場合は plugins/AfnwCore2 配下にデータファイルを作成します。
+   * プレイヤーデータの設定を行います。 * プレイヤーデータが存在しない場合は plugins/AfnwCore2 配下にデータファイルを作成します。
    */
   public void saveDefaultPlayerData() {
-    if(!dataFile.exists()) {
+    if (!dataFile.exists()) {
       try {
         dataFile.createNewFile();
       } catch (IOException e) {
@@ -50,10 +49,11 @@ public class PlayerData {
 
   /**
    * プレイヤーデータをロードします。
+   *
    * @return プレイヤーデータ(FileConfigurationとしてロードされたものを返します)
    */
   public FileConfiguration getPlayerData() {
-    if(playerData == null) {
+    if (playerData == null) {
       reloadPlayerData();
     }
 
@@ -79,7 +79,7 @@ public class PlayerData {
    * プレイヤーデータをセーブします。
    */
   public void savePlayerData() {
-    if(playerData == null) {
+    if (playerData == null) {
       return;
     }
 

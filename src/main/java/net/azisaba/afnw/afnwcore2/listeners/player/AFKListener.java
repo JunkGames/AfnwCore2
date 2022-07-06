@@ -16,26 +16,28 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * プレイヤーがAFK状態になったら自動でAFKポイントにTPするクラス
+ *
  * @param plugin AfnwCore2
- * @see org.bukkit.event.Listener
  * @author m2en
+ * @see org.bukkit.event.Listener
  */
 public record AFKListener(JavaPlugin plugin) implements Listener {
 
   /**
    * AFK状態になったら自動でAFKポイントにTPするイベント
+   *
    * @param e net.ess3.api.events.AfkStatusChangeEvent
    */
   @EventHandler(priority = EventPriority.HIGHEST)
   public void onAFK(AfkStatusChangeEvent e) {
     Player p = e.getAffected().getBase();
-    if(p.hasPermission("afnw.bypass.afk")) {
+    if (p.hasPermission("afnw.bypass.afk")) {
       return;
     }
 
     FileConfiguration config = plugin.getConfig();
     World afkWorld = Bukkit.getWorld(config.getString("afk.afk_world_name", "afk"));
-    if(afkWorld == null) {
+    if (afkWorld == null) {
       throw new NullPointerException("Lobby World could not be found");
     }
     int x = config.getInt("afk.afk_point_x", 0);
@@ -45,9 +47,9 @@ public record AFKListener(JavaPlugin plugin) implements Listener {
     y++;
     Location afkPoint = new Location(afkWorld, x, y, z);
 
-    if(e.getCause() == Cause.MOVE || e.getCause() == Cause.QUIT) {
+    if (e.getCause() == Cause.MOVE || e.getCause() == Cause.QUIT) {
       return;
-    } else if(e.getCause() == Cause.ACTIVITY || e.getCause() == Cause.COMMAND) {
+    } else if (e.getCause() == Cause.ACTIVITY || e.getCause() == Cause.COMMAND) {
       p.teleport(afkPoint);
     } else {
       p.teleport(afkPoint);

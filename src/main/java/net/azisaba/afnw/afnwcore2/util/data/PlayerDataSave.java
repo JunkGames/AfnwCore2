@@ -8,13 +8,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * プレイヤーデータの自動保存を行うクラスです。
- * @param plugin メインクラス
+ *
+ * @param plugin     メインクラス
  * @param playerData プレイヤーデータクラス
  */
 public record PlayerDataSave(JavaPlugin plugin, PlayerData playerData) {
 
   /**
    * コンフィグで指定された秒数間隔でプレイヤーデータを保存します。
+   *
    * @return プレイヤーデータ
    */
   public PlayerData playerData() {
