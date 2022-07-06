@@ -71,17 +71,19 @@ public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements C
 
         int itemSize = config.getInt("vote.item-size", 1);
         int scaffoldSize = config.getInt("vote.scaffold-size", 8);
-        int bonus = config.getInt("vote.bonus-line", 9);
+        int bonusLine = config.getInt("vote.bonus-line", 9);
 
         FileConfiguration dataFile = playerData.getPlayerData();
         int voteCount = dataFile.getInt(((Player) sender).getUniqueId().toString());
-        if(voteCount % bonus == 0) {
+        if(voteCount > bonusLine) {
             for (int i = 0; i < 10; i++) {
                 inv.addItem(AfnwTicket.afnwTicket);
             }
             inv.addItem(new ItemStack(Material.NETHER_STAR));
-            sender.sendMessage(Component.text("投票ボーナスを獲得しました。チケット10枚とネザースターが配布されます。").color(NamedTextColor.YELLOW));
+            sender.sendMessage(Component.text("投票ボーナスを獲得しました。チケット10枚とネザースターを獲得しました。").color(NamedTextColor.YELLOW));
+            sender.sendMessage(Component.text("投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.YELLOW));
         }
+        dataFile.set(((Player) sender).getUniqueId().toString(), 0);
 
         SecureRandom random;
         ItemStack afnwItem;
