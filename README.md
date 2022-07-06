@@ -16,8 +16,15 @@
 
 ## 前提プラグイン
 
+AfnwCore2を導入したPaperを起動するには以下のプラグインが `plugins/` に導入されている必要があります。
+
 - [EssentialsX](https://essentialsx.net/downloads.html)
-- [ViaVersion](https://www.spigotmc.org/resources/viaversion.19254/)
+
+## 使用API
+
+- [paper-api:1.17.1-R0.1-SNAPSHOT](https://papermc.io/repo/repository/maven-public/)
+  - [JavaDoc](https://papermc.io/repo/repository/maven-public/)
+- [EssentialsX API](https://repo.essentialsx.net/releases/)
 
 ## Build
 
@@ -27,9 +34,3 @@ gradle build
 ```
 
 なお、Intellij IDEAを使用している場合はすべてGUI上で使用可能です。
-
-## コントリビュート
-
-Issueを作成する前にAfnw運営全体に対して報告を行ってください。また、悪用可能な不具合等はIssueを作成しないでください。
-
-PRを提出する際は [コントリビュートガイド](.github/CONTRIBUTING.md) を参照してください。
