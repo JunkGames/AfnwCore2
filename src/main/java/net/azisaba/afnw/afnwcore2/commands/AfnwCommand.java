@@ -1,5 +1,6 @@
 package net.azisaba.afnw.afnwcore2.commands;
 
+import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.azisaba.afnw.afnwcore2.util.item.AfnwScaffold;
 import net.azisaba.afnw.afnwcore2.util.item.AfnwTicket;
 import net.kyori.adventure.text.Component;
@@ -27,7 +28,7 @@ import java.util.List;
  * @author m2en
  * @see org.bukkit.command.CommandExecutor
  */
-public record AfnwCommand(JavaPlugin plugin) implements CommandExecutor {
+public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements CommandExecutor {
 
     /**
      * /afnw
@@ -46,9 +47,11 @@ public record AfnwCommand(JavaPlugin plugin) implements CommandExecutor {
             sender.sendMessage(Component.text("/afnwコマンドはプレイヤーのみ実行可能です。").color(NamedTextColor.RED));
             return true;
         }
+        /**
         if(!(sender.hasPermission("afnw.command.afnw"))) {
             return true;
         }
+        */
 
         Inventory inv = ((Player) sender).getInventory();
         int firstInv = inv.firstEmpty();
@@ -68,6 +71,20 @@ public record AfnwCommand(JavaPlugin plugin) implements CommandExecutor {
 
         int itemSize = config.getInt("vote.item-size", 1);
         int scaffoldSize = config.getInt("vote.scaffold-size", 8);
+        int bonusLine = config.getInt("vote.bonus-line", 9);
+
+        FileConfiguration dataFile = playerData.getPlayerData();
+        int voteCount = dataFile.getInt(((Player) sender).getUniqueId().toString());
+        if(voteCount >= bonusLine) {
+            for (int i = 0; i < 10; i++) {
+                inv.addItem(AfnwTicket.afnwTicket);
+            }
+            inv.addItem(new ItemStack(Material.NETHER_STAR));
+            sender.sendMessage(Component.text("★: 投票ボーナスを獲得しました。チケット10枚とネザースターを獲得しました。").color(NamedTextColor.YELLOW));
+            sender.sendMessage(Component.text("★: 投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.YELLOW));
+        }
+        dataFile.set(((Player) sender).getUniqueId().toString(), 0);
+        playerData.savePlayerData();
 
         SecureRandom random;
         ItemStack afnwItem;
