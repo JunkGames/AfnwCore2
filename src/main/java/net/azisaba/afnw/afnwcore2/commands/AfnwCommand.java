@@ -75,15 +75,16 @@ public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements C
 
         FileConfiguration dataFile = playerData.getPlayerData();
         int voteCount = dataFile.getInt(((Player) sender).getUniqueId().toString());
-        if(voteCount > bonusLine) {
+        if(voteCount >= bonusLine) {
             for (int i = 0; i < 10; i++) {
                 inv.addItem(AfnwTicket.afnwTicket);
             }
             inv.addItem(new ItemStack(Material.NETHER_STAR));
-            sender.sendMessage(Component.text("投票ボーナスを獲得しました。チケット10枚とネザースターを獲得しました。").color(NamedTextColor.YELLOW));
-            sender.sendMessage(Component.text("投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.YELLOW));
+            sender.sendMessage(Component.text("★: 投票ボーナスを獲得しました。チケット10枚とネザースターを獲得しました。").color(NamedTextColor.YELLOW));
+            sender.sendMessage(Component.text("★: 投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.YELLOW));
         }
         dataFile.set(((Player) sender).getUniqueId().toString(), 0);
+        playerData.savePlayerData();
 
         SecureRandom random;
         ItemStack afnwItem;
