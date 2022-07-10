@@ -56,7 +56,7 @@ public record JoinListener(JavaPlugin plugin, PlayerData playerData) implements 
         @Override
         public void run() {
           Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-              "ekick " + p.getName() + " Bedrock Blockerが発動しました");
+              "ekick " + p.getName() + "Bedrock Blocker // 統合版での接続を検知したため、接続を切断しました。");
         }
       }.runTaskLater(JavaPlugin.getPlugin(AfnwCore2.class), 20L * 15);
     }
