@@ -1,12 +1,14 @@
 package net.azisaba.afnw.afnwcore2.listeners.player;
 
 import java.time.Duration;
+import java.util.Arrays;
 import net.azisaba.afnw.afnwcore2.AfnwCore2;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -22,7 +24,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @author m2en
  * @see org.bukkit.event.Listener
  */
-public record JoinListener(PlayerData playerData) implements Listener {
+public record JoinListener(JavaPlugin plugin, PlayerData playerData) implements Listener {
 
 
   /**
@@ -39,8 +41,11 @@ public record JoinListener(PlayerData playerData) implements Listener {
     e.joinMessage(Component.text(p.getName() + "がログインしました").color(NamedTextColor.YELLOW));
 
     // 統合版のプレイヤーをブロックする(Bedrock Blocker)
+    FileConfiguration config = plugin.getConfig();
+    String[] allowPlayerId = config.getStringList("settings.allow-bedrock-player").toArray(new String[0]);
+
     if (p.getName().startsWith(".")) {
-        if (p.getName().equals(".Meru92a")) {
+        if (p.getName().equals(Arrays.toString(allowPlayerId))) {
             return;
         }
       p.sendMessage(Component.text(
