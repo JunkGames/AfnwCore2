@@ -46,7 +46,8 @@ public record JoinListener(JavaPlugin plugin, PlayerData playerData) implements 
 
     if (p.getName().startsWith(".")) {
         if (p.getName().equals(Arrays.toString(allowPlayerId))) {
-            return;
+          p.sendMessage(Component.text("Bedrock Blockerの発動を解除しました").color(NamedTextColor.YELLOW));
+          return;
         }
       p.sendMessage(Component.text(
           "Minecraft Bedrock Edition(統合版)での接続を検知しました。\n大変申し訳ありませんが統合版でAfnwをプレイすることはできません。Java版での接続をお願いします。15秒後自動的にアジ鯖ロビーへ戻ります。",
