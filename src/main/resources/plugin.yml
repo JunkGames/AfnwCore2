@@ -30,8 +30,6 @@ permissions:
     default: false
   afnw.command.ticket-give:
     default: false
-  afnw.command.ticket-show:
-    default: false
   afnw.command.ticket-send:
     default: false
     description: DO NOT RUN COMMAND BY PLAYER
