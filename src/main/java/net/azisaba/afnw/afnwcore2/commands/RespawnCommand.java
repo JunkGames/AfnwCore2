@@ -46,6 +46,7 @@ public class RespawnCommand implements TabExecutor {
       return true;
     }
     if (!(sender.hasPermission("afnw.command.respawn"))) {
+      sender.sendMessage(Component.text("You don't have permission to use this command.", NamedTextColor.RED));
       return true;
     }
     if (args.length == 0) {

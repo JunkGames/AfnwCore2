@@ -121,6 +121,10 @@ public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements
               Component.text("Usage(give): /ticket give <size> <player>", NamedTextColor.RED));
           return true;
         }
+        if (!(sender.hasPermission("afnw.command.ticket-give"))) {
+          sender.sendMessage(Component.text("You don't have permission to use this command.", NamedTextColor.RED));
+          return true;
+        }
 
         int giveTicketInt = Integer.parseInt(args[1]);
         Player giveTarget = Bukkit.getPlayerExact(args[2]);
