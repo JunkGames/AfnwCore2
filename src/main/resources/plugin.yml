@@ -20,6 +20,8 @@ permissions:
     default: op
   afnw.bypass.standby:
     default: op
+  afnw.command.config-views:
+    default: op
   afnw.command.afnw:
     default: not op
   afnw.command.vote:
@@ -27,8 +29,6 @@ permissions:
   afnw.command.respawn:
     default: false
   afnw.command.ticket-give:
-    default: false
-  afnw.command.ticket-show:
     default: false
   afnw.command.ticket-send:
     default: false
@@ -86,3 +86,7 @@ commands:
     description: ボーナス状況の確認を行います。
     aliases:
       - votebonus
+  config-views:
+    description: コンフィグファイルの設定状況を表示します。
+    aliases:
+      - settings-views
