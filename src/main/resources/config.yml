@@ -42,3 +42,5 @@ trash:
 settings:
   player-save-period: 120
   # プレイヤーデータの自動セーブ間隔を秒で指定します。int(数)ではない場合はエラーが発生します。デフォルト: 120
+  allow-bedrock-player: ['.Meru92a']
+  # Bedrock Blockerを除外するプレイヤーのMCIDを入力します。必ず先頭には "." を入れ、コンマで区切ってください。

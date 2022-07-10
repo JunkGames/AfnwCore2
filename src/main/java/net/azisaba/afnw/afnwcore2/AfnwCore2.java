@@ -55,7 +55,7 @@ public class AfnwCore2 extends JavaPlugin {
     PluginManager pluginEvent = Bukkit.getPluginManager();
     getLogger().info("Listener 設定中....");
     /* プレイヤーリスナー */
-    pluginEvent.registerEvents(new JoinListener(data), this);
+    pluginEvent.registerEvents(new JoinListener(this, data), this);
     pluginEvent.registerEvents(new QuitListener(), this);
     pluginEvent.registerEvents(new DeathListener(), this);
     pluginEvent.registerEvents(new FirstPlayerJoinListener(this, data), this);

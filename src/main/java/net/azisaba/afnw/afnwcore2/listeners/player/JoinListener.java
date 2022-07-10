@@ -1,12 +1,14 @@
 package net.azisaba.afnw.afnwcore2.listeners.player;
 
 import java.time.Duration;
+import java.util.Arrays;
 import net.azisaba.afnw.afnwcore2.AfnwCore2;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -22,7 +24,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
  * @author m2en
  * @see org.bukkit.event.Listener
  */
-public record JoinListener(PlayerData playerData) implements Listener {
+public record JoinListener(JavaPlugin plugin, PlayerData playerData) implements Listener {
 
 
   /**
@@ -39,9 +41,13 @@ public record JoinListener(PlayerData playerData) implements Listener {
     e.joinMessage(Component.text(p.getName() + "がログインしました").color(NamedTextColor.YELLOW));
 
     // 統合版のプレイヤーをブロックする(Bedrock Blocker)
+    FileConfiguration config = plugin.getConfig();
+    String[] allowPlayerId = config.getStringList("settings.allow-bedrock-player").toArray(new String[0]);
+
     if (p.getName().startsWith(".")) {
-        if (p.getName().equals(".Meru92a")) {
-            return;
+        if (p.getName().equals(Arrays.toString(allowPlayerId))) {
+          p.sendMessage(Component.text("Bedrock Blockerの発動を解除しました").color(NamedTextColor.YELLOW));
+          return;
         }
       p.sendMessage(Component.text(
           "Minecraft Bedrock Edition(統合版)での接続を検知しました。\n大変申し訳ありませんが統合版でAfnwをプレイすることはできません。Java版での接続をお願いします。15秒後自動的にアジ鯖ロビーへ戻ります。",
@@ -51,7 +57,7 @@ public record JoinListener(PlayerData playerData) implements Listener {
         @Override
         public void run() {
           Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-              "ekick " + p.getName() + " Bedrock Blockerが発動しました");
+              "ekick " + p.getName() + "Bedrock Blocker // 統合版での接続を検知したため、接続を切断しました。");
         }
       }.runTaskLater(JavaPlugin.getPlugin(AfnwCore2.class), 20L * 15);
     }
