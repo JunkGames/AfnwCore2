@@ -32,6 +32,7 @@ public record ConfigReloadCommand(JavaPlugin plugin) implements CommandExecutor 
       return true;
     }
     if (!(sender.hasPermission("afnw.command.config_reload"))) {
+      sender.sendMessage(Component.text("You don't have permission to use this command.", NamedTextColor.RED));
       return true;
     }
 
