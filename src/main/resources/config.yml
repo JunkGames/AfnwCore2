@@ -44,3 +44,7 @@ settings:
   # プレイヤーデータの自動セーブ間隔を秒で指定します。int(数)ではない場合はエラーが発生します。デフォルト: 120
   allow-bedrock-player: ['.Meru92a']
   # Bedrock Blockerを除外するプレイヤーのMCIDを入力します。必ず先頭には "." を入れ、コンマで区切ってください。
+  allow-wither-spawn: true
+  # ウィザーのスポーン(召喚)を許可するか, booleanで指定します。 true: 許可します。召喚されてもキャンセルしません。 / false: 許可しません。召喚されてもキャンセルします。
+  notification-wither-spawn: true
+  # ウィザーの召喚通知を行うか, booleanで指定します。true: 通知します / false: 通知しません。
