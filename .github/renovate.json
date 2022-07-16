@@ -1,6 +1,6 @@
 {
   "extends": [
-    "github>github>m2en/renovate-config"
+    "github>m2en/renovate-config"
   ],
   "labels": ["\uD83D\uDD2Erenovate: update"]
 }
