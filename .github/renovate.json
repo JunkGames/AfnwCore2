@@ -1,8 +1,6 @@
 {
   "extends": [
-    "github>AzisabaNetwork/renovate-config"
+    "github>github>m2en/renovate-config"
   ],
-  "labels": ["\uD83D\uDD2Erenovate: update"],
-  "reviewers": ["m2en"],
-  "automerge": true
+  "labels": ["\uD83D\uDD2Erenovate: update"]
 }
