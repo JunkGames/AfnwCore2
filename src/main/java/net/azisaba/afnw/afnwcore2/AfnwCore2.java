@@ -14,6 +14,7 @@ import net.azisaba.afnw.afnwcore2.commands.VoidCommand;
 import net.azisaba.afnw.afnwcore2.commands.VoteCommand;
 import net.azisaba.afnw.afnwcore2.listeners.block.CropsBreakCanceller;
 import net.azisaba.afnw.afnwcore2.listeners.block.SaplingBreakCanceller;
+import net.azisaba.afnw.afnwcore2.listeners.entity.WitherSpawn;
 import net.azisaba.afnw.afnwcore2.listeners.player.AFKListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.DeathListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.FirstPlayerJoinListener;
@@ -60,6 +61,8 @@ public class AfnwCore2 extends JavaPlugin {
     pluginEvent.registerEvents(new DeathListener(), this);
     pluginEvent.registerEvents(new FirstPlayerJoinListener(this, data), this);
     pluginEvent.registerEvents(new AFKListener(this), this);
+    /* エンティティリスナー */
+    pluginEvent.registerEvents(new WitherSpawn(this), this);
     getLogger().info("Listener 設定完了");
     /* ブロックリスナー */
     pluginEvent.registerEvents(new CropsBreakCanceller(), this);
