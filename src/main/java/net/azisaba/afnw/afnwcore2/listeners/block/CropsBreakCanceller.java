@@ -59,11 +59,10 @@ public class CropsBreakCanceller implements Listener {
       return;
     }
 
-    if (!(b.getBlockData() instanceof Ageable)) {
-      Ageable crop = (Ageable) b.getBlockData();
-        if (crop.getMaximumAge() == crop.getAge()) {
-            return;
-        }
+    if (b.getBlockData() instanceof Ageable crop) {
+      if (crop.getMaximumAge() == crop.getAge()) {
+        return;
+      }
     }
 
     e.setCancelled(true);
