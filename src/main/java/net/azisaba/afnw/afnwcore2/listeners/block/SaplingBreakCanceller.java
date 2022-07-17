@@ -62,9 +62,10 @@ public class SaplingBreakCanceller implements Listener {
     Player p = e.getPlayer();
     Block b = e.getBlock();
 
-      if (!Tag.CROPS.isTagged(b.getLocation().add(0, 1, 0).getBlock().getType())) {
-          return;
-      }
+    if (!(Tag.SAPLINGS.isTagged(b.getLocation().add(0, 1, 0).getBlock().getType()))) {
+      return;
+    }
+
     if (p.hasPermission("afnw.bypass.break.arable")) {
       p.sendMessage(Component.text("耕地保護機能を回避しました。").color(NamedTextColor.GOLD));
       return;
