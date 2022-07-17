@@ -28,7 +28,7 @@ public record RespawnNether(JavaPlugin plugin) implements Listener {
       if(lobby == null) {
         throw new NullPointerException("Lobby World could not be found");
       }
-      p.teleport(lobby.getSpawnLocation());
+      e.setRespawnLocation(lobby.getSpawnLocation());
     } else {
       e.setRespawnLocation(respawn);
     }
