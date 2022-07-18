@@ -13,6 +13,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * プレイヤーがAFK状態になったら自動でAFKポイントにTPするクラス
@@ -51,8 +52,19 @@ public record AFKListener(JavaPlugin plugin) implements Listener {
     // AFKポイントにTPする
     if (e.getCause() == Cause.MOVE || e.getCause() == Cause.QUIT) {
       return;
-    } else if (e.getCause() == Cause.ACTIVITY || e.getCause() == Cause.COMMAND) {
+    } else if (e.getCause() == Cause.ACTIVITY) {
       p.teleport(afkPoint);
+    } else if (e.getCause() == Cause.COMMAND) {
+      int standby = config.getInt("tp.standby", 10);
+
+      p.sendMessage(Component.text("コマンドのAFKのため、待機時間が発動します。(" + standby + "秒後)", NamedTextColor.AQUA));
+      new BukkitRunnable() {
+        @Override
+        public void run() {
+          p.teleport(afkPoint);
+          p.sendMessage(Component.text("AFKモード(コマンド)になったため、AFKポイントに退避しました。", NamedTextColor.GREEN));
+        }
+      }.runTaskLater(plugin, 20L * standby);
     } else {
       p.teleport(afkPoint);
       p.sendMessage(Component.text("AFKモードになったため、AFKポイントに退避しました。", NamedTextColor.GREEN));
