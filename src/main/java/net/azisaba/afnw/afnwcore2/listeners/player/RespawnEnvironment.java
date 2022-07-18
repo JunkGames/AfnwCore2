@@ -11,12 +11,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public record RespawnNether(JavaPlugin plugin) implements Listener {
+public record RespawnEnvironment(JavaPlugin plugin) implements Listener {
 
   @EventHandler
   public void onRespawn(PlayerRespawnEvent e) {
     Player p = e.getPlayer();
-    if(e.getRespawnLocation().getWorld().getEnvironment() != Environment.NETHER) {
+    Environment respawnEnv = e.getRespawnLocation().getWorld().getEnvironment();
+    if(respawnEnv == Environment.NORMAL) {
       return;
     }
 
