@@ -20,7 +20,7 @@ import net.azisaba.afnw.afnwcore2.listeners.player.DeathListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.FirstPlayerJoinListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.JoinListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.QuitListener;
-import net.azisaba.afnw.afnwcore2.listeners.player.RespawnNether;
+import net.azisaba.afnw.afnwcore2.listeners.player.RespawnEnvironment;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerDataSave;
 import org.bukkit.Bukkit;
@@ -62,7 +62,7 @@ public class AfnwCore2 extends JavaPlugin {
     pluginEvent.registerEvents(new DeathListener(), this);
     pluginEvent.registerEvents(new FirstPlayerJoinListener(this, data), this);
     pluginEvent.registerEvents(new AFKListener(this), this);
-    pluginEvent.registerEvents(new RespawnNether(this), this);
+    pluginEvent.registerEvents(new RespawnEnvironment(this), this);
     /* エンティティリスナー */
     pluginEvent.registerEvents(new WitherSpawn(this), this);
     getLogger().info("Listener 設定完了");
