@@ -103,8 +103,7 @@ public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements
           sendTarget.sendMessage(
               Component.text("投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.LIGHT_PURPLE));
           logger.info(sendTarget.getName() + "が投票ボーナスを獲得しました。");
-          dataFile.set(sendTarget.getUniqueId().toString(), 0);
-          playerData.savePlayerData();
+          voteCount = 0;
         }
         dataFile.set(sendTarget.getUniqueId().toString(), voteCount);
         playerData.savePlayerData();
