@@ -2,6 +2,7 @@ package net.azisaba.afnw.afnwcore2.commands;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.logging.Logger;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.azisaba.afnw.afnwcore2.util.item.AfnwTicket;
@@ -75,14 +76,17 @@ public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements
           LocalDateTime date = LocalDateTime.now();
           DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
           String dateString = dateFormat.format(date);
+          Random rand = new Random();
+          int errorId = rand.nextInt(1000) + 100;
           sendTarget.sendMessage(Component.text(
-              "インベントリが満杯でチケットを入手できませんでした。\nこのチャットの画像を公式Discord \"#補填 | Afnw鯖\" に送ってください。",
+              "インベントリが満杯でチケットを入手できませんでした。\nこのチャットの画像を公式Discord \"#投票補填 | Afnw鯖\" に送ってください。",
               NamedTextColor.RED));
           sendTarget.sendMessage(ChatColor.RED + "MCID: " + ChatColor.WHITE + sendTarget.getName());
           sendTarget.sendMessage(
               ChatColor.RED + "UUID: " + ChatColor.WHITE + sendTarget.getUniqueId());
           sendTarget.sendMessage(ChatColor.RED + "日時: " + ChatColor.WHITE + dateString);
-          logger.warning(sendTarget.getName() + "がチケットを入手できませんでした。(理由: インベントリが満杯)");
+          sendTarget.sendMessage(ChatColor.RED + "エラーID: " + ChatColor.WHITE + errorId);
+          logger.warning(sendTarget.getName() + "がチケットを入手できませんでした。(理由: インベントリが満杯) - エラーID: " + errorId);
           break;
         }
 
