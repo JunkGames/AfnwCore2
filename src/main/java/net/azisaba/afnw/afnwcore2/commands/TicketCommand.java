@@ -98,10 +98,10 @@ public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements
             inv.addItem(AfnwTicket.afnwTicket);
           }
           inv.addItem(new ItemStack(Material.NETHER_STAR));
-          sendTarget.sendMessage(Component.text("投票ボーナスを獲得しました。チケット10枚とネザースターを獲得しました。")
-              .color(NamedTextColor.LIGHT_PURPLE));
+          sendTarget.sendMessage(Component.text("* 投票ボーナスとしてチケット10枚とネザースターを獲得しました。")
+              .color(NamedTextColor.YELLOW));
           sendTarget.sendMessage(
-              Component.text("投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.LIGHT_PURPLE));
+              Component.text("* 投票ボーナスがリセットされました。次回以降の投票から有効です。").color(NamedTextColor.YELLOW));
           logger.info(sendTarget.getName() + "が投票ボーナスを獲得しました。");
           voteCount = 0;
         }
