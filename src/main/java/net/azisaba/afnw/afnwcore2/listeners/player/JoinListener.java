@@ -38,7 +38,7 @@ public record JoinListener(JavaPlugin plugin, PlayerData playerData) implements 
 
     // プレイヤーがサーバーに参加したらタイトルとログインメッセージを送信する
     sendPlayerTitle(p);
-    e.joinMessage(Component.text(p.getName() + "がログインしました").color(NamedTextColor.YELLOW));
+    e.joinMessage(Component.text(p.getName() + "がログインしました").color(NamedTextColor.AQUA));
 
     // 統合版のプレイヤーをブロックする(Bedrock Blocker)
     FileConfiguration config = plugin.getConfig();
