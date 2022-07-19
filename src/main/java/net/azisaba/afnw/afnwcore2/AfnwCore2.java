@@ -85,11 +85,21 @@ public class AfnwCore2 extends JavaPlugin {
     Objects.requireNonNull(getCommand("trash")).setExecutor(new TrashCommand(this));
     getLogger().info("コマンド 設定完了");
 
+    if(getConfig().getBoolean("settings.maintenance-mode-toggle", false)) {
+      getServer().setWhitelist(true);
+      getLogger().info("正常に起動しました。(メンテナンスモード)");
+      return;
+    }
+
     getLogger().info("正常に起動しました。");
   }
 
   @Override
   public void onDisable() {
+    if(getConfig().getBoolean("settings.maintenance-mode-toggle", false)) {
+      getServer().setWhitelist(false);
+      getLogger().info("正常に終了しました。(メンテナンスモード)");
+    }
     getLogger().info("正常に終了しました。");
   }
 }
