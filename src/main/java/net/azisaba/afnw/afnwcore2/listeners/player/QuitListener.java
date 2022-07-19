@@ -25,6 +25,7 @@ public class QuitListener implements Listener {
   public void onQuit(PlayerQuitEvent e) {
     // ログアウト通知を行う
     Player p = e.getPlayer();
-    e.quitMessage(Component.text(p.getName() + "がログアウトしました。").color(NamedTextColor.AQUA));
+
+    e.quitMessage(Component.text("* " + p.getName() + "がログアウトしました。").color(NamedTextColor.AQUA));
   }
 }
