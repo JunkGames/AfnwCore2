@@ -48,3 +48,5 @@ settings:
   # ウィザーのスポーン(召喚)を許可するか, booleanで指定します。 true: 許可します。召喚されてもキャンセルしません。 / false: 許可しません。召喚されてもキャンセルします。
   notification-wither-spawn: true
   # ウィザーの召喚通知を行うか, booleanで指定します。true: 通知します / false: 通知しません。
+  maintenance-mode-toggle: false
+  # メンテナンスモードで起動するか, booleanで指定します。true: 起動します / false: 起動しません。

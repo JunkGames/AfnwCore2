@@ -47,6 +47,8 @@ permissions:
     default: not op
   afnw.command.bonus:
     default: not op
+  afnw.command.maintenance:
+    default: op
 
 commands:
   afnw:
@@ -86,7 +88,8 @@ commands:
     description: ボーナス状況の確認を行います。
     aliases:
       - votebonus
-  config-views:
-    description: コンフィグファイルの設定状況を表示します。
+  maintenance:
+    description: メンテナンスモードに移行します。
     aliases:
-      - settings-views
+      - mente
+      - debug
