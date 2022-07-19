@@ -6,6 +6,7 @@ import net.azisaba.afnw.afnwcore2.commands.BedCommand;
 import net.azisaba.afnw.afnwcore2.commands.ConfigReloadCommand;
 import net.azisaba.afnw.afnwcore2.commands.EnderchestCommand;
 import net.azisaba.afnw.afnwcore2.commands.LobbyCommand;
+import net.azisaba.afnw.afnwcore2.commands.MaintenanceCommand;
 import net.azisaba.afnw.afnwcore2.commands.RespawnCommand;
 import net.azisaba.afnw.afnwcore2.commands.TicketCommand;
 import net.azisaba.afnw.afnwcore2.commands.TrashCommand;
@@ -83,6 +84,7 @@ public class AfnwCore2 extends JavaPlugin {
     Objects.requireNonNull(getCommand("bed")).setExecutor(new BedCommand(this));
     Objects.requireNonNull(getCommand("pc")).setExecutor(new EnderchestCommand());
     Objects.requireNonNull(getCommand("trash")).setExecutor(new TrashCommand(this));
+    Objects.requireNonNull(getCommand("maintenance")).setExecutor(new MaintenanceCommand());
     getLogger().info("コマンド 設定完了");
 
     if(getConfig().getBoolean("settings.maintenance-mode-toggle", false)) {
