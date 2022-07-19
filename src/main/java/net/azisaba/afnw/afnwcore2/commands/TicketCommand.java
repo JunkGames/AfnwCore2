@@ -117,6 +117,7 @@ public record TicketCommand(JavaPlugin plugin, PlayerData playerData) implements
         // 通知
         sendTarget.sendMessage(Component.text("チケットを入手しました。/afnwを実行することでアイテムと交換することができます。",
             NamedTextColor.LIGHT_PURPLE));
+        sendTarget.sendMessage(Component.text("投票ボーナスまで: " + voteCount + "/" + config.getInt("vote.bonus-line", 10), NamedTextColor.YELLOW));
       }
       case "give" -> {
         if (!(args.length == 3)) {
