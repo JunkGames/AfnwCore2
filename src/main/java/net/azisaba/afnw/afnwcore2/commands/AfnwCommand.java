@@ -50,6 +50,7 @@ public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements C
       case AIR:
       case VOID_AIR:
       case CAVE_AIR:
+      case BUNDLE:
         return false;
       default:
         return true;
