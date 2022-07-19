@@ -27,12 +27,10 @@ public record BonusCommand(JavaPlugin plugin, PlayerData playerData) implements 
       return false;
     }
 
-    /**
     if(!(sender.hasPermission("afnw.command.bonus"))) {
       sender.sendMessage(Component.text("You don't have permission to use this command.", NamedTextColor.RED));
       return false;
     }
-     */
 
     FileConfiguration data = playerData.getPlayerData();
     FileConfiguration config = plugin.getConfig();
