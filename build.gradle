@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.10'
 }
 
 group = 'net.azisaba.afnw'
@@ -24,6 +25,7 @@ repositories {
 dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT'
     compileOnly 'net.essentialsx:EssentialsX:2.19.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
 }
 
 def targetJavaVersion = 17
@@ -49,5 +51,22 @@ processResources {
     filteringCharset 'UTF-8'
     filesMatching('plugin.yml') {
         expand props
+    }
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'AfnwCore2'
     }
 }

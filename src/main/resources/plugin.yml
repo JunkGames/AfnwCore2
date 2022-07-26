@@ -8,88 +8,20 @@ authors: [ merunno, afnwteam ]
 description: That world, once again.
 depend: [ Essentials ]
 website: https://github.com/AfnwTeam/AfnwCore2
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.7.10
 
 permissions:
-  afnw.bypass.break.newCrops:
+  command.ticket:
+    description: 投票コマンドの権限
     default: op
-  afnw.bypass.break.sapling:
-    default: op
-  afnw.bypass.break.arable:
-    default: op
-  afnw.bypass.afk:
-    default: op
-  afnw.bypass.standby:
-    default: op
-  afnw.command.config-views:
-    default: op
-  afnw.command.afnw:
-    default: not op
-  afnw.command.vote:
-    default: false
-  afnw.command.respawn:
-    default: false
-  afnw.command.ticket-give:
-    default: false
-  afnw.command.ticket-send:
-    default: false
-    description: DO NOT RUN COMMAND BY PLAYER
-  afnw.command.config_reload:
-    default: false
-  afnw.command.lobby:
-    default: not op
-  afnw.command.void:
-    default: not op
-  afnw.command.tutorial:
-    default: not op
-  afnw.command.bed:
-    default: not op
-  afnw.command.pc:
-    default: not op
-  afnw.command.bonus:
-    default: not op
-  afnw.command.maintenance:
-    default: op
+  command.afnw:
+    description: アイテム交換コマンドの権限
 
 commands:
-  afnw:
-    description: チケットとアイテムを交換します。
-  vote:
-    description: 投票サイト一覧を表示します。
-  respawn:
-    description: プレイヤーを強制的にリスポーンさせます。
-    usage: /respawn <player>
   ticket:
-    description: チケットコマンドのサブグループ
-    usage: /ticket <subcommand>
-  config_reload:
-    description: コンフィグファイルのリロードを行います。
-    aliases:
-      - reload#afnw
-  lobby:
-    description: ロビーへTPします。
-  void:
-    description: メインワールドへ移動します。
-  tutorial:
-    description: チュートリアルワールドへ移動します。
-  bed:
-    description: ベッド地点に移動します。
-    aliases:
-      - home
-  pc:
-    description: プライベートチェスト(個人チェスト)を開きます。
-    aliases:
-      - personalchest
-  trash:
-    description: ゴミ箱を開きます。
-    aliases:
-      - haruneko
-      - gomi
-  bonus:
-    description: ボーナス状況の確認を行います。
-    aliases:
-      - votebonus
-  maintenance:
-    description: メンテナンスモードに移行します。
-    aliases:
-      - mente
-      - debug
+    usage: /ticket <send | give> [player] [amount]
+    permission: command.ticket
+  afnw:
+    usage: /afnw [amount]
+    permission: command.afnw
