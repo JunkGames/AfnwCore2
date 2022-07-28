@@ -1,4 +1,4 @@
-package net.azisaba.afnw.afnwcore2.listener
+package net.azisaba.afnw.afnwcore2.listener.player
 
 import com.earth2me.essentials.Essentials
 import net.kyori.adventure.text.Component

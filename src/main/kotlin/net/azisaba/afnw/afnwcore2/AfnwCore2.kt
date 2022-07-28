@@ -2,10 +2,10 @@
 
 package net.azisaba.afnw.afnwcore2
 
-import net.azisaba.afnw.afnwcore2.command.AfnwCommand
-import net.azisaba.afnw.afnwcore2.command.TicketCommand
-import net.azisaba.afnw.afnwcore2.listener.JoinListener
-import net.azisaba.afnw.afnwcore2.listener.QuitListener
+import net.azisaba.afnw.afnwcore2.command.afnwticket.AfnwCommand
+import net.azisaba.afnw.afnwcore2.command.afnwticket.TicketCommand
+import net.azisaba.afnw.afnwcore2.listener.player.JoinListener
+import net.azisaba.afnw.afnwcore2.listener.player.QuitListener
 import net.azisaba.afnw.afnwcore2.utils.data.PlayerData
 import org.bukkit.Bukkit
 import org.bukkit.plugin.PluginManager

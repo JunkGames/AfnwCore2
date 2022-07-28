@@ -1,4 +1,4 @@
-package net.azisaba.afnw.afnwcore2.command
+package net.azisaba.afnw.afnwcore2.command.afnwticket
 
 import net.azisaba.afnw.afnwcore2.AfnwCore2
 import net.azisaba.afnw.afnwcore2.utils.AfnwTicket.ticket
