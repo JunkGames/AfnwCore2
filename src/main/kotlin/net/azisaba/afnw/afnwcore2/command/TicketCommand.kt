@@ -20,17 +20,20 @@ class TicketCommand(private val plugin: AfnwCore2, private val data: PlayerData)
             return false
         }
 
+        // /ticket sendの場合の処理
         if(args[0] == "send") {
             sendTicketCommand(sender, args[1])
             return true
         }
 
+        // プレイヤーの取得
         val target = Bukkit.getPlayer(args[1])
         if (target == null) {
             sender.sendMessage(Component.text("エラー: プレイヤーが見つかりませんでした", NamedTextColor.RED))
             return false
         }
 
+        // 配布数の設定(引数が未設定の場合は1枚)
         var amount = 0
         if(args.size == 2) {
             amount++
@@ -38,12 +41,14 @@ class TicketCommand(private val plugin: AfnwCore2, private val data: PlayerData)
             amount = args[2].toInt()
         }
 
+        // 配布
         val inv = target.inventory
         for (i in 0 until amount) {
             inv.addItem(ticket)
         }
 
-        sender.sendMessage(Component.text("${target.name}　にチケット(${amount}枚)を配布しました。", NamedTextColor.YELLOW))
+        // 通知
+        sender.sendMessage(Component.text("${sender.name} が ${target.name}　にチケット(${amount}枚)を配布しました。", NamedTextColor.YELLOW))
         // TODO: ドキュメントのリンクを挿入する
         sender.sendMessage(Component.text("警告: プレイヤーデータに対しての補填を実行する際は /data set を使用します。\n詳細はドキュメントを参照してください: ", NamedTextColor.RED))
         target.sendMessage(Component.text("チケットを入手しました。 /afnwを実行してアイテムと交換しましょう。", NamedTextColor.YELLOW))
@@ -52,33 +57,40 @@ class TicketCommand(private val plugin: AfnwCore2, private val data: PlayerData)
     }
 
     private fun sendTicketCommand(sender: CommandSender, id: String) {
+        // コンソールのみコマンドの処理を受け入れる
         if(sender !is Player) {
             sender.sendMessage(Component.text("エラー: sendコマンドはコンソールからのみ実行できます", NamedTextColor.RED))
             return
         }
 
+        // プレイヤーの取得
         val target = Bukkit.getPlayer(id)
         if(target == null) {
             sender.sendMessage(Component.text("エラー: プレイヤーが見つかりませんでした", NamedTextColor.RED))
             return
         }
 
+        // コンフィグの取得
         val config = plugin.config
         val amount = config.getInt("vote.ticket-amount")
 
+        // 配布
         val inv = target.inventory
         for (i in 0 until amount) {
             inv.addItem(ticket)
         }
 
+        // プレイヤーデータの操作
         saveVoteData(target)
 
+        // 通知
         sender.sendMessage(Component.text("${target.name}　にチケット(${amount}枚)を配布しました。", NamedTextColor.YELLOW))
         target.sendMessage(Component.text("チケットを入手しました。 /afnwを実行してアイテムと交換しましょう。", NamedTextColor.YELLOW))
     }
 
     private fun saveVoteData(target: Player) {
         val config = plugin.config
+
         val bonusLine = config.getInt("vote.bonus-line", 1)
         val netherStarAmount = config.getInt("vote.nether-star-amount", 1)
 
