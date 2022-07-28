@@ -6,6 +6,7 @@ import net.azisaba.afnw.afnwcore2.command.afnwticket.AfnwCommand
 import net.azisaba.afnw.afnwcore2.command.afnwticket.TicketCommand
 import net.azisaba.afnw.afnwcore2.listener.player.JoinListener
 import net.azisaba.afnw.afnwcore2.listener.player.QuitListener
+import net.azisaba.afnw.afnwcore2.listener.player.RespawnListener
 import net.azisaba.afnw.afnwcore2.utils.data.PlayerData
 import org.bukkit.Bukkit
 import org.bukkit.plugin.PluginManager
@@ -22,6 +23,7 @@ class AfnwCore2 : JavaPlugin() {
         val pluginManager: PluginManager = Bukkit.getPluginManager()
         pluginManager.registerEvents(JoinListener(), this)
         pluginManager.registerEvents(QuitListener(), this)
+        pluginManager.registerEvents(RespawnListener(this), this)
         getCommand("afnw")?.setExecutor(AfnwCommand(this))
         getCommand("ticket")?.setExecutor(TicketCommand(this, data))
 
