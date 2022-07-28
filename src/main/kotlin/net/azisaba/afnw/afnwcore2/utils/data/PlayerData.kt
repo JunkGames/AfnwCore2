@@ -7,7 +7,7 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
-import java.util.logging.Level.SEVERE
+import java.util.logging.Level
 
 class PlayerData(private val plugin: Plugin, private val fileName: String) {
 
@@ -15,29 +15,27 @@ class PlayerData(private val plugin: Plugin, private val fileName: String) {
     private var playerData: FileConfiguration? = null
 
     fun saveDefaultPlayerData() {
-        if(!dataFile.exists()) {
+        if(!(dataFile.exists())) {
             try {
                 dataFile.createNewFile()
-            } catch (error: IOException) {
-                plugin.logger.log(SEVERE, "プレイヤーデータファイルを作成できませんでした: ", error)
+            } catch (e: IOException) {
+                plugin.logger.log(Level.SEVERE, "Failed to create player data file.", e)
             }
         }
     }
 
     fun getPlayerData(): FileConfiguration? {
-        if(playerData == null) {
+        if (playerData == null) {
             reloadPlayerData()
         }
         return playerData
     }
 
     private fun reloadPlayerData() {
-        var playerData = YamlConfiguration.loadConfiguration(dataFile)
-        val defPlayerData = plugin.getResource(fileName) ?: return
-        playerData.setDefaults(
-            YamlConfiguration.loadConfiguration(
-                InputStreamReader(defPlayerData, StandardCharsets.UTF_8)
-            )
+        playerData = YamlConfiguration.loadConfiguration(dataFile)
+        val defaultPlayerData = plugin.getResource(fileName) ?: return
+        (playerData as YamlConfiguration).setDefaults(
+            YamlConfiguration.loadConfiguration(InputStreamReader(defaultPlayerData, StandardCharsets.UTF_8))
         )
     }
 
@@ -48,7 +46,7 @@ class PlayerData(private val plugin: Plugin, private val fileName: String) {
         try {
             getPlayerData()!!.save(dataFile)
         } catch (exception: IOException) {
-            plugin.logger.log(java.util.logging.Level.CONFIG, "プレイヤーデータの保存に失敗しました: $playerData", exception)
+            plugin.logger.log(Level.CONFIG, "プレイヤーデータの保存に失敗しました: $playerData", exception)
         }
     }
 }
