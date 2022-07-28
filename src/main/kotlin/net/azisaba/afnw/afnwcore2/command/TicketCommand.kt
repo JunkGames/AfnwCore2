@@ -20,6 +20,11 @@ class TicketCommand(private val plugin: AfnwCore2, private val data: PlayerData)
             return false
         }
 
+        if(args[0] == "send") {
+            sendTicketCommand(sender, args[1])
+            return true
+        }
+
         val target = Bukkit.getPlayer(args[1])
         val amount = args[2].toInt()
         if (target == null) {
@@ -32,12 +37,38 @@ class TicketCommand(private val plugin: AfnwCore2, private val data: PlayerData)
             inv.addItem(ticket)
         }
 
+        sender.sendMessage(Component.text("${target.name}　にチケット(${amount}枚)を配布しました。", NamedTextColor.YELLOW))
+        // TODO: ドキュメントのリンクを挿入する
+        sender.sendMessage(Component.text("警告: プレイヤーデータに対しての補填を実行する際は /data set を使用します。\n詳細はドキュメントを参照してください: ", NamedTextColor.RED))
+        target.sendMessage(Component.text("チケットを入手しました。 /afnwを実行してアイテムと交換しましょう。", NamedTextColor.YELLOW))
+
+        return true
+    }
+
+    private fun sendTicketCommand(sender: CommandSender, id: String) {
+        if(sender !is Player) {
+            sender.sendMessage(Component.text("エラー: sendコマンドはコンソールからのみ実行できます", NamedTextColor.RED))
+            return
+        }
+
+        val target = Bukkit.getPlayer(id)
+        if(target == null) {
+            sender.sendMessage(Component.text("エラー: プレイヤーが見つかりませんでした", NamedTextColor.RED))
+            return
+        }
+
+        val config = plugin.config
+        val amount = config.getInt("vote.ticket-amount")
+
+        val inv = target.inventory
+        for (i in 0 until amount) {
+            inv.addItem(ticket)
+        }
+
         saveVoteData(target)
 
         sender.sendMessage(Component.text("${target.name}　にチケット(${amount}枚)を配布しました。", NamedTextColor.YELLOW))
         target.sendMessage(Component.text("チケットを入手しました。 /afnwを実行してアイテムと交換しましょう。", NamedTextColor.YELLOW))
-
-        return true
     }
 
     private fun saveVoteData(target: Player) {

@@ -11,7 +11,6 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
-import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
@@ -20,27 +19,28 @@ import java.util.Arrays
 class AfnwCommand(private val plugin: AfnwCore2) : CommandExecutor {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
-        if(sender !is Player) {
+        if (sender !is Player) {
             Bukkit.getLogger().warning("このコマンドはプレイヤーのみ実行できます。")
             return false
         }
 
-        if(command.name != "afnw") {
+        if (command.name != "afnw") {
             return false
         }
 
-        val player = sender
-        val inv = player.inventory
+        val inv = sender.inventory
 
-        var amount: String? = args[0]
-        if(amount == null) {
-            amount = "1"
+        var amount = 0
+        if(args.isEmpty()) {
+            amount++
+        } else {
+            amount = args[0].toInt()
         }
 
 
         // 交換したい分のチケットがインベントリにあるか確認
-        if(!(inv.containsAtLeast(ticket, amount.toInt()))) {
-            player.sendMessage(Component.text("エラー: チケットが足りません。", NamedTextColor.RED))
+        if (!(inv.containsAtLeast(ticket, amount))) {
+            sender.sendMessage(Component.text("エラー: チケットが足りません。", NamedTextColor.RED))
             return false
         }
 
@@ -50,23 +50,24 @@ class AfnwCommand(private val plugin: AfnwCore2) : CommandExecutor {
         val scaffoldAmount = config.getInt("vote.scaffold-amount", 1)
 
         // インベントリに十分な空きがない場合
-        if(inv.firstEmpty() == -itemAmount + scaffoldAmount) {
-            player.sendMessage(Component.text("エラー: インベントリに十分な空きがないため交換できません。整理してからまた再実行してください。", NamedTextColor.RED))
+        if (inv.firstEmpty() == -itemAmount + scaffoldAmount) {
+            sender.sendMessage(Component.text("エラー: インベントリに十分な空きがないため交換できません。整理してからまた再実行してください。", NamedTextColor.RED))
             return false
         }
 
         // TODO: 処理を改善させる
         // インベントリからチケットを消費させアイテムを追加する
-        for(t in 0 until amount.toInt()) {
+        for (t in 0 until amount) {
             for (i in 0 until itemAmount) {
                 // アイテムの選出処理
                 val random: SecureRandom
                 val item: ItemStack
                 try {
                     random = SecureRandom.getInstance("SHA1PRNG")
-                    val itemList: MutableList<Material> = ArrayList(Arrays.asList(*Material.values()))
+                    val itemList: MutableList<Material> =
+                        ArrayList(Arrays.asList(*Material.values()))
                     itemList.removeIf { type: Material -> !isAllowed(type) }
-                    item = ItemStack(itemList[random.nextInt(itemList.size)], amount.toInt())
+                    item = ItemStack(itemList[random.nextInt(itemList.size)], amount)
                 } catch (error: NoSuchAlgorithmException) {
                     throw NoSuchAlgorithmException(error)
                 }
@@ -77,7 +78,7 @@ class AfnwCommand(private val plugin: AfnwCore2) : CommandExecutor {
 
         inv.addItem(ItemStack(Material.SCAFFOLDING, scaffoldAmount))
 
-        player.sendMessage(Component.text(amount + "枚のチケットをアイテムと交換しました", NamedTextColor.YELLOW))
+        sender.sendMessage(Component.text(amount.toString() + "枚のチケットをアイテムと交換しました", NamedTextColor.YELLOW))
         return true
     }
 
