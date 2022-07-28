@@ -26,10 +26,16 @@ class TicketCommand(private val plugin: AfnwCore2, private val data: PlayerData)
         }
 
         val target = Bukkit.getPlayer(args[1])
-        val amount = args[2].toInt()
         if (target == null) {
             sender.sendMessage(Component.text("エラー: プレイヤーが見つかりませんでした", NamedTextColor.RED))
             return false
+        }
+
+        var amount = 0
+        if(args.size == 2) {
+            amount++
+        } else {
+            amount = args[2].toInt()
         }
 
         val inv = target.inventory
