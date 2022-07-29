@@ -17,6 +17,12 @@ permissions:
     default: op
   command.afnw:
     description: アイテム交換コマンドの権限
+  bypass.break:
+    description: 農作物・苗木の保護を無効化する権限
+    default: op
+  bypass.afk:
+    description: AFKTPの機能から除外する権限
+    default: op
 
 commands:
   ticket:
