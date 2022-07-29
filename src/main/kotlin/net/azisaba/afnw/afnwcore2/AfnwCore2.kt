@@ -4,6 +4,7 @@ package net.azisaba.afnw.afnwcore2
 
 import net.azisaba.afnw.afnwcore2.command.afnwticket.AfnwCommand
 import net.azisaba.afnw.afnwcore2.command.afnwticket.TicketCommand
+import net.azisaba.afnw.afnwcore2.listener.block.CropsBreakCanceller
 import net.azisaba.afnw.afnwcore2.listener.block.SaplingBreakCanceller
 import net.azisaba.afnw.afnwcore2.listener.player.JoinListener
 import net.azisaba.afnw.afnwcore2.listener.player.QuitListener
@@ -26,6 +27,7 @@ class AfnwCore2 : JavaPlugin() {
         pluginManager.registerEvents(QuitListener(), this)
         pluginManager.registerEvents(RespawnListener(this), this)
         pluginManager.registerEvents(SaplingBreakCanceller(), this)
+        pluginManager.registerEvents(CropsBreakCanceller(), this)
         getCommand("afnw")?.setExecutor(AfnwCommand(this))
         getCommand("ticket")?.setExecutor(TicketCommand(this, data))
 
