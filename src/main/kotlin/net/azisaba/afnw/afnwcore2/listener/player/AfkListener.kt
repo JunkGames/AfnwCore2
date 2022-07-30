@@ -22,7 +22,7 @@ class AfkListener(private val plugin: AfnwCore2): Listener {
             return
         }
 
-        val config = plugin.getConfig()
+        val config = plugin.config
         val afkWorld: World =
             Bukkit.getWorld(config.getString("afk.afk_world_name", "afk") ?: return)
                 ?: throw NullPointerException("Lobby World could not be found")
