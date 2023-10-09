@@ -1,5 +1,5 @@
 name: AfnwCore2
-version: '${version}'
+version: @version@
 main: net.azisaba.afnw.afnwcore2.AfnwCore2
 api-version: 1.17
 prefix: AfnwCore2
