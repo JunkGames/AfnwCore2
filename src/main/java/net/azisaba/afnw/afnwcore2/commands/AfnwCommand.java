@@ -19,6 +19,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -55,6 +56,19 @@ public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements C
       default:
         return true;
     }
+  }
+
+  @Contract("_ -> new")
+  public static @NotNull ItemStack getRandomItem(int amount) {
+    try {
+      SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+      List<Material> itemList = new ArrayList<>(Arrays.asList(Material.values()));
+      itemList.removeIf(type -> !isAllowed(type));
+      return new ItemStack(itemList.get(random.nextInt(itemList.size() - 1)), amount);
+    } catch (NoSuchAlgorithmException e) {
+      throw new RuntimeException(e);
+    }
+
   }
 
   /**
@@ -97,16 +111,7 @@ public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements C
     int itemSize = config.getInt("vote.item-size", 1);
     int scaffoldSize = config.getInt("vote.scaffold-size", 8);
 
-    SecureRandom random;
-    ItemStack afnwItem;
-    try {
-      random = SecureRandom.getInstance("SHA1PRNG");
-      List<Material> itemList = new ArrayList<>(Arrays.asList(Material.values()));
-      itemList.removeIf(type -> !isAllowed(type));
-      afnwItem = new ItemStack(itemList.get(random.nextInt(itemList.size() - 1)), itemSize);
-    } catch (NoSuchAlgorithmException e) {
-      throw new RuntimeException(e);
-    }
+    ItemStack afnwItem = getRandomItem(itemSize);
 
     inv.removeItem(AfnwTicket.afnwTicket);
     inv.addItem(afnwItem);

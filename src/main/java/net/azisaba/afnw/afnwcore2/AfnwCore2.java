@@ -17,15 +17,13 @@ import net.azisaba.afnw.afnwcore2.commands.VoteCommand;
 import net.azisaba.afnw.afnwcore2.listeners.block.CropsBreakCanceller;
 import net.azisaba.afnw.afnwcore2.listeners.block.SaplingBreakCanceller;
 import net.azisaba.afnw.afnwcore2.listeners.entity.WitherSpawn;
-import net.azisaba.afnw.afnwcore2.listeners.player.AFKListener;
-import net.azisaba.afnw.afnwcore2.listeners.player.DeathListener;
-import net.azisaba.afnw.afnwcore2.listeners.player.FirstPlayerJoinListener;
-import net.azisaba.afnw.afnwcore2.listeners.player.JoinListener;
-import net.azisaba.afnw.afnwcore2.listeners.player.QuitListener;
-import net.azisaba.afnw.afnwcore2.listeners.player.RespawnEnvironment;
+import net.azisaba.afnw.afnwcore2.listeners.other.VoteListener;
+import net.azisaba.afnw.afnwcore2.listeners.player.*;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerDataSave;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.entity.Dolphin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -65,8 +63,11 @@ public class AfnwCore2 extends JavaPlugin {
     pluginEvent.registerEvents(new FirstPlayerJoinListener(this, data), this);
     pluginEvent.registerEvents(new AFKListener(this), this);
     pluginEvent.registerEvents(new RespawnEnvironment(this), this);
+    pluginEvent.registerEvents(new SuperAfnwTicketListener(), this);
     /* エンティティリスナー */
     pluginEvent.registerEvents(new WitherSpawn(this), this);
+    /* その他 */
+    pluginEvent.registerEvents(new VoteListener(), this);
     getLogger().info("Listener 設定完了");
     /* ブロックリスナー */
     pluginEvent.registerEvents(new CropsBreakCanceller(), this);
@@ -95,6 +96,13 @@ public class AfnwCore2 extends JavaPlugin {
       return;
     }
 
+    Bukkit.getScheduler().runTaskTimer(this, () -> {
+      for (World world : Bukkit.getWorlds()) {
+        for (Dolphin entity : world.getEntitiesByClass(Dolphin.class)) {
+          entity.remove();
+        }
+      }
+    }, 1, 1);
     getLogger().info("正常に起動しました。");
   }
 

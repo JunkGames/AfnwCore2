@@ -23,5 +23,9 @@ jobs:
           java-version: '17'
           cache: 'gradle'
 
-      - run: chmod +x ./gradlew
+      - name: Prepare gradle.properties
+        run: |
+          mkdir -p $HOME/.gradle
+          echo "azisabaNmsUsername=${{ secrets.REPO_USERNAME }}" >> $HOME/.gradle/gradle.properties
+          echo "azisabaNmsPassword=${{ secrets.REPO_PASSWORD }}" >> $HOME/.gradle/gradle.properties
       - run: ./gradlew build
