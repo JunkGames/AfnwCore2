@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "net.azisaba.afnw"
-version = "1.4.1"
+version = "1.5.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT")
     compileOnly("net.essentialsx:EssentialsX:2.19.7")
 }
 
