@@ -31,8 +31,8 @@ public record MMGiveCommand(@NotNull Plugin plugin) implements TabExecutor {
         int amount = args.length == 2 ? 1 : Integer.parseInt(args[2]);
         for (ItemStack value : player.getInventory().addItem(MythicBukkit.inst().getItemManager().getItemStack(mythicType, amount)).values()) {
             ItemUtil.addToStashIfEnabledAsync(plugin, player.getUniqueId(), value);
-            sender.sendMessage(Component.text("インベントリがいっぱいのため、Stashに入りました。", NamedTextColor.RED));
-            sender.sendMessage(
+            player.sendMessage(Component.text("インベントリがいっぱいのため、Stashに入りました。", NamedTextColor.RED));
+            player.sendMessage(
                     Component.text("/pickupstashで受け取れます。", NamedTextColor.RED)
                             .clickEvent(ClickEvent.clickEvent(ClickEvent.Action.RUN_COMMAND, "/pickupstash"))
                             .hoverEvent(HoverEvent.showText(Component.text("クリックでStashの画面を開く")))
