@@ -35,7 +35,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.blueberrymc:native-util:2.1.0")
+//    implementation("net.blueberrymc:native-util:2.1.0")
     compileOnly("io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT")
     compileOnly("org.spigotmc:spigot:1.20.2-R0.1-SNAPSHOT")
     compileOnly("net.azisaba.ballotbox:receiver:1.0.1")
