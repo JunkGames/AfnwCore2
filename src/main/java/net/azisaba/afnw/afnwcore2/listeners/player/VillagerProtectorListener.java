@@ -28,7 +28,7 @@ public class VillagerProtectorListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
         if (e.getPlayer().getGameMode() == GameMode.CREATIVE) return;
-        if (!e.getBlock().getLocation().getNearbyEntitiesByType(Villager.class, 1, 2).isEmpty()) {
+        if (!e.getBlock().getLocation().add(0.5, 0, 0.5).getNearbyEntitiesByType(Villager.class, 0.2, 2).isEmpty()) {
             e.setCancelled(true);
             e.getPlayer().sendMessage(Component.text("このブロックは破壊できません！", NamedTextColor.RED));
         }
