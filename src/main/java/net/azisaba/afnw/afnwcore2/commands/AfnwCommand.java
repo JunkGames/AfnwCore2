@@ -34,28 +34,12 @@ public record AfnwCommand(JavaPlugin plugin, PlayerData playerData) implements C
       if (!type.isItem()) {
           return false;
       }
-    switch (type) {
-      case BEDROCK:
-      case STRUCTURE_BLOCK:
-      case STRUCTURE_VOID:
-      case COMMAND_BLOCK:
-      case CHAIN_COMMAND_BLOCK:
-      case COMMAND_BLOCK_MINECART:
-      case REPEATING_COMMAND_BLOCK:
-      case BARRIER:
-      case LIGHT:
-      case JIGSAW:
-      case END_PORTAL:
-      case KNOWLEDGE_BOOK:
-      case DEBUG_STICK:
-      case AIR:
-      case VOID_AIR:
-      case CAVE_AIR:
-      case BUNDLE:
-        return false;
-      default:
-        return true;
-    }
+      return switch (type) {
+          case BEDROCK, STRUCTURE_BLOCK, STRUCTURE_VOID, COMMAND_BLOCK, CHAIN_COMMAND_BLOCK, COMMAND_BLOCK_MINECART,
+                  REPEATING_COMMAND_BLOCK, BARRIER, LIGHT, JIGSAW, END_PORTAL, KNOWLEDGE_BOOK, DEBUG_STICK,
+                  AIR, VOID_AIR, CAVE_AIR, BUNDLE -> false;
+          default -> true;
+      };
   }
 
   @Contract("_ -> new")

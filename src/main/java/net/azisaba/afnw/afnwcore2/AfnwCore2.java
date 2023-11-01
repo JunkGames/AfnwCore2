@@ -66,7 +66,7 @@ public class AfnwCore2 extends JavaPlugin {
     pluginEvent.registerEvents(new FirstPlayerJoinListener(this, data), this);
     pluginEvent.registerEvents(new AFKListener(this), this);
     pluginEvent.registerEvents(new RespawnEnvironment(this), this);
-    pluginEvent.registerEvents(new SuperAfnwTicketListener(), this);
+    pluginEvent.registerEvents(new SuperAfnwTicketListener(this), this);
     pluginEvent.registerEvents(new VillagerInteractListener(), this);
     /* エンティティリスナー */
     pluginEvent.registerEvents(new WitherSpawn(this), this);
