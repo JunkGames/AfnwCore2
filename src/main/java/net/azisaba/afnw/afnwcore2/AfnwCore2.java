@@ -41,6 +41,9 @@ public class AfnwCore2 extends JavaPlugin {
 
     // コンフィグのロード
     saveDefaultConfig();
+    if (getConfig().getBoolean("settings.require-item-stash", false) && Bukkit.getPluginManager().isPluginEnabled("ItemStash")) {
+      throw new RuntimeException("ItemStashプラグインがインストールされていません。settings > require-item-stashをfalseにするか、ItemStashをインストール、またはエラーを確認してください。");
+    }
     getLogger().info("コンフィグ ロード完了");
 
     // プレイヤーデータのロード
@@ -67,7 +70,7 @@ public class AfnwCore2 extends JavaPlugin {
     /* エンティティリスナー */
     pluginEvent.registerEvents(new WitherSpawn(this), this);
     /* その他 */
-    pluginEvent.registerEvents(new VoteListener(), this);
+    pluginEvent.registerEvents(new VoteListener(this, data), this);
     getLogger().info("Listener 設定完了");
     /* ブロックリスナー */
     pluginEvent.registerEvents(new CropsBreakCanceller(), this);

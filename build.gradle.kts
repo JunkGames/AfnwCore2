@@ -39,6 +39,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT")
     compileOnly("org.spigotmc:spigot:1.20.2-R0.1-SNAPSHOT")
     compileOnly("net.azisaba.ballotbox:receiver:1.0.1")
+    compileOnly("net.azisaba:ItemStash:1.0.0-SNAPSHOT")
     compileOnly("net.essentialsx:EssentialsX:2.19.7")
 }
 
