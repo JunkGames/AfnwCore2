@@ -24,6 +24,10 @@ repositories {
         name = "essentialsx"
         url = uri("https://repo.essentialsx.net/releases/")
     }
+    maven {
+        name = "lumine"
+        url = uri("https://mvn.lumine.io/repository/maven-public/")
+    }
     if (properties["azisabaNmsUsername"] != null && properties["azisabaNmsPassword"] != null) {
         maven {
             name = "azisabaNms"
@@ -41,6 +45,7 @@ dependencies {
     compileOnly("net.azisaba.ballotbox:receiver:1.0.1")
     compileOnly("net.azisaba:ItemStash:1.0.0-SNAPSHOT")
     compileOnly("net.essentialsx:EssentialsX:2.19.7")
+    compileOnly("io.lumine:Mythic-Dist:5.4.0")
 }
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))

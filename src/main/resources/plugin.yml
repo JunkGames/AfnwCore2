@@ -97,3 +97,5 @@ commands:
       - debug
   pvp:
     description: PvPの可否を設定します。
+  mmgive:
+    permission: afnw.command.mmgive
