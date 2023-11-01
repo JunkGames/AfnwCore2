@@ -23,6 +23,7 @@ import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerDataSave;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_20_R2.entity.CraftDolphin;
 import org.bukkit.entity.Dolphin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -106,10 +107,10 @@ public class AfnwCore2 extends JavaPlugin {
     Bukkit.getScheduler().runTaskTimer(this, () -> {
       for (World world : Bukkit.getWorlds()) {
         for (Dolphin entity : world.getEntitiesByClass(Dolphin.class)) {
-          entity.remove();
+          ((CraftDolphin) entity).getHandle().bO.a(goal -> goal.getClass().getTypeName().equals("net.minecraft.world.entity.animal.EntityDolphin$a"));
         }
       }
-    }, 1, 1);
+    }, 10, 10);
     getLogger().info("正常に起動しました。");
   }
 
