@@ -1,19 +1,11 @@
 package net.azisaba.afnw.afnwcore2;
 
+import java.util.HashSet;
 import java.util.Objects;
-import net.azisaba.afnw.afnwcore2.commands.AfnwCommand;
-import net.azisaba.afnw.afnwcore2.commands.BedCommand;
-import net.azisaba.afnw.afnwcore2.commands.BonusCommand;
-import net.azisaba.afnw.afnwcore2.commands.ConfigReloadCommand;
-import net.azisaba.afnw.afnwcore2.commands.EnderchestCommand;
-import net.azisaba.afnw.afnwcore2.commands.LobbyCommand;
-import net.azisaba.afnw.afnwcore2.commands.MaintenanceCommand;
-import net.azisaba.afnw.afnwcore2.commands.RespawnCommand;
-import net.azisaba.afnw.afnwcore2.commands.TicketCommand;
-import net.azisaba.afnw.afnwcore2.commands.TrashCommand;
-import net.azisaba.afnw.afnwcore2.commands.TutorialCommand;
-import net.azisaba.afnw.afnwcore2.commands.VoidCommand;
-import net.azisaba.afnw.afnwcore2.commands.VoteCommand;
+import java.util.Set;
+import java.util.UUID;
+
+import net.azisaba.afnw.afnwcore2.commands.*;
 import net.azisaba.afnw.afnwcore2.listeners.block.CropsBreakCanceller;
 import net.azisaba.afnw.afnwcore2.listeners.block.SaplingBreakCanceller;
 import net.azisaba.afnw.afnwcore2.listeners.entity.WitherSpawn;
@@ -21,10 +13,13 @@ import net.azisaba.afnw.afnwcore2.listeners.other.VoteListener;
 import net.azisaba.afnw.afnwcore2.listeners.player.*;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerData;
 import net.azisaba.afnw.afnwcore2.util.data.PlayerDataSave;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_20_R2.entity.CraftDolphin;
 import org.bukkit.entity.Dolphin;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,6 +30,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @see org.bukkit.plugin.java.JavaPlugin
  */
 public class AfnwCore2 extends JavaPlugin {
+  public final Set<UUID> pvpEnabled = new HashSet<>();
 
   @Override
   public void onEnable() {
@@ -72,6 +68,7 @@ public class AfnwCore2 extends JavaPlugin {
     pluginEvent.registerEvents(new VillagerProtectorListener(), this);
     pluginEvent.registerEvents(new BedListener(this), this);
     pluginEvent.registerEvents(new EnderDragonDisableListener(), this);
+    pluginEvent.registerEvents(new PvPListener(this), this);
     /* エンティティリスナー */
     pluginEvent.registerEvents(new WitherSpawn(this), this);
     /* その他 */
@@ -96,6 +93,7 @@ public class AfnwCore2 extends JavaPlugin {
     Objects.requireNonNull(getCommand("trash")).setExecutor(new TrashCommand(this));
     Objects.requireNonNull(getCommand("maintenance")).setExecutor(new MaintenanceCommand());
     Objects.requireNonNull(getCommand("bonus")).setExecutor(new BonusCommand(this, data));
+    Objects.requireNonNull(getCommand("pvp")).setExecutor(new PvPCommand(this));
     getLogger().info("コマンド 設定完了");
 
     if(getConfig().getBoolean("settings.maintenance-mode-toggle", false)) {
@@ -109,6 +107,13 @@ public class AfnwCore2 extends JavaPlugin {
         for (Dolphin entity : world.getEntitiesByClass(Dolphin.class)) {
           ((CraftDolphin) entity).getHandle().bO.a(goal -> goal.getClass().getTypeName().equals("net.minecraft.world.entity.animal.EntityDolphin$a"));
         }
+      }
+      for (Player player : Bukkit.getOnlinePlayers()) {
+        boolean pvp = pvpEnabled.contains(player.getUniqueId());
+        player.sendActionBar(
+                Component.text("⚔ PvP: ")
+                        .append(Component.text(pvp ? "有効" : "無効", pvp ? NamedTextColor.RED : NamedTextColor.GREEN))
+        );
       }
     }, 10, 10);
     getLogger().info("正常に起動しました。");
