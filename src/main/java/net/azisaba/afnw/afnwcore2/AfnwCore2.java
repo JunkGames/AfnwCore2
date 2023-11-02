@@ -38,7 +38,7 @@ public class AfnwCore2 extends JavaPlugin {
 
     // コンフィグのロード
     saveDefaultConfig();
-    if (getConfig().getBoolean("settings.require-item-stash", false) && Bukkit.getPluginManager().isPluginEnabled("ItemStash")) {
+    if (getConfig().getBoolean("settings.require-item-stash", false) && !Bukkit.getPluginManager().isPluginEnabled("ItemStash")) {
       throw new RuntimeException("ItemStashプラグインがインストールされていません。settings > require-item-stashをfalseにするか、ItemStashをインストール、またはエラーを確認してください。");
     }
     getLogger().info("コンフィグ ロード完了");
