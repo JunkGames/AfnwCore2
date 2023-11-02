@@ -1,5 +1,6 @@
 package net.azisaba.afnw.afnwcore2.commands;
 
+import net.azisaba.afnw.afnwcore2.util.Expr;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
@@ -14,6 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class SafeTeleportCommand implements TabExecutor {
     @Override
@@ -23,7 +25,25 @@ public class SafeTeleportCommand implements TabExecutor {
             sender.sendMessage(Component.text("Player was not found", NamedTextColor.RED));
             return true;
         }
-        Location location = new Location(player.getWorld(), Integer.parseInt(args[1]) + 0.5, Integer.parseInt(args[2]), Integer.parseInt(args[3]) + 0.5);
+        int x;
+        try {
+            x = Integer.parseInt(args[1]);
+        } catch (NumberFormatException e) {
+            x = (int) Objects.requireNonNull(Expr.eval(player, args[1]));
+        }
+        int y;
+        try {
+            y = Integer.parseInt(args[2]);
+        } catch (NumberFormatException e) {
+            y = (int) Objects.requireNonNull(Expr.eval(player, args[2]));
+        }
+        int z;
+        try {
+            z = Integer.parseInt(args[3]);
+        } catch (NumberFormatException e) {
+            z = (int) Objects.requireNonNull(Expr.eval(player, args[3]));
+        }
+        Location location = new Location(player.getWorld(), x + 0.5, y, z + 0.5);
         player.teleport(location);
         location.subtract(0, 1, 0).getBlock().setType(Material.HONEYCOMB_BLOCK);
         return true;
