@@ -98,6 +98,7 @@ public class AfnwCore2 extends JavaPlugin {
     Objects.requireNonNull(getCommand("pvp")).setExecutor(new PvPCommand(this));
     Objects.requireNonNull(getCommand("mmgive")).setExecutor(new MMGiveCommand(this));
     Objects.requireNonNull(getCommand("mmgiveeval")).setExecutor(new MMGiveEvalCommand());
+    Objects.requireNonNull(getCommand("safeteleport")).setExecutor(new SafeTeleportCommand());
     getLogger().info("コマンド 設定完了");
 
     if(getConfig().getBoolean("settings.maintenance-mode-toggle", false)) {

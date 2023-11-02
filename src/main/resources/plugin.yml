@@ -101,3 +101,5 @@ commands:
     permission: afnw.command.mmgive
   mmgiveeval:
     permission: afnw.command.mmgiveeval
+  safeteleport:
+    permission: afnw.command.safeteleport
