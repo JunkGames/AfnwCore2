@@ -22,6 +22,8 @@ import org.bukkit.entity.Dolphin;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 /**
  * AfnwCore2 のメインクラス
@@ -95,6 +97,7 @@ public class AfnwCore2 extends JavaPlugin {
     Objects.requireNonNull(getCommand("bonus")).setExecutor(new BonusCommand(this, data));
     Objects.requireNonNull(getCommand("pvp")).setExecutor(new PvPCommand(this));
     Objects.requireNonNull(getCommand("mmgive")).setExecutor(new MMGiveCommand(this));
+    Objects.requireNonNull(getCommand("mmgiveeval")).setExecutor(new MMGiveEvalCommand());
     getLogger().info("コマンド 設定完了");
 
     if(getConfig().getBoolean("settings.maintenance-mode-toggle", false)) {
@@ -127,5 +130,10 @@ public class AfnwCore2 extends JavaPlugin {
       getLogger().info("正常に終了しました。(メンテナンスモード)");
     }
     getLogger().info("正常に終了しました。");
+  }
+
+  @NotNull
+  public static Logger getPluginLogger() {
+    return getPlugin(AfnwCore2.class).getSLF4JLogger();
   }
 }

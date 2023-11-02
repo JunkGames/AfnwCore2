@@ -40,6 +40,8 @@ repositories {
 
 dependencies {
 //    implementation("net.blueberrymc:native-util:2.1.0")
+    implementation("xyz.acrylicstyle.java-util:common:2.0.0-SNAPSHOT")
+    implementation("xyz.acrylicstyle.java-util:expression:2.0.0-SNAPSHOT")
     compileOnly("io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT")
     compileOnly("org.spigotmc:spigot:1.20.2-R0.1-SNAPSHOT")
     compileOnly("net.azisaba.ballotbox:receiver:1.0.1")
@@ -62,5 +64,9 @@ tasks {
             filter(org.apache.tools.ant.filters.ReplaceTokens::class, mapOf("tokens" to mapOf("version" to project.version.toString())))
             filteringCharset = "UTF-8"
         }
+    }
+
+    shadowJar {
+        relocate("xyz.acrylicstyle.util", "net.azisaba.afnwcore2.lib.xyz.acrylicstyle.util")
     }
 }
