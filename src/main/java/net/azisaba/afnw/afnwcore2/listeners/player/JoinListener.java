@@ -72,7 +72,7 @@ public record JoinListener(JavaPlugin plugin, PlayerData playerData) implements 
   @Deprecated
   public void sendPlayerTitle(@NonNull Player p) {
     // タイトルの表示時間の設定
-    final Title.Times times = Title.Times.of(Duration.ofMillis(500), Duration.ofMillis(3000),
+    final Title.Times times = Title.Times.times(Duration.ofMillis(500), Duration.ofMillis(3000),
         Duration.ofMillis(1000));
 
     // タイトルの設定
