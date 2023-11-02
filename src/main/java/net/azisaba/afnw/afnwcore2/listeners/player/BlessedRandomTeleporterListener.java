@@ -23,6 +23,7 @@ public record BlessedRandomTeleporterListener() implements Listener {
         String worldName = e.getPlayer().getWorld().getName();
         if (!worldName.equals("afnw") && !worldName.equals("afnw_nether") && !worldName.equals("afnw_the_end")) {
             e.getPlayer().sendMessage(Component.text("このワールドでは使えません！", NamedTextColor.RED));
+            e.setCancelled(true);
             return;
         }
         Location location;
