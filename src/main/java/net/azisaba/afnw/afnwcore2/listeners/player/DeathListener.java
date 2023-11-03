@@ -30,6 +30,7 @@ public class DeathListener implements Listener {
         String inventoryMessage;
         if (e.getPlayer().getGameMode() != GameMode.SURVIVAL) {
             e.setKeepInventory(true);
+            e.getDrops().clear();
             inventoryMessage = "サバイバルモード以外のため、インベントリの中身は失いません。";
         } else {
             if (e.getPlayer().getStatistic(Statistic.PLAY_ONE_MINUTE) >= 20 * 60 * 60 * 5) { // 5 hours
@@ -37,6 +38,7 @@ public class DeathListener implements Listener {
                 inventoryMessage = "プレイ時間が5時間以上のため、インベントリの中身を失いました。";
             } else {
                 e.setKeepInventory(true);
+                e.getDrops().clear();
                 inventoryMessage = "プレイ時間が5時間未満のため、インベントリの中身は失いません。";
             }
         }
