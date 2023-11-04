@@ -28,6 +28,12 @@ public record VoteListener(AfnwCore2 plugin, PlayerData playerData) implements L
         ItemStack ticketItem = AfnwTicket.afnwTicket.clone();
         ticketItem.setAmount(ticketSize);
 
+        Bukkit.broadcast(
+                Component.text("[", NamedTextColor.GOLD)
+                        .append(Component.text("Broadcast", NamedTextColor.DARK_RED))
+                        .append(Component.text("] ", NamedTextColor.GOLD))
+                        .append(Component.text(e.getVote().getUsername(), NamedTextColor.RED))
+                        .append(Component.text("が" + e.getVote().getServiceName() + "で投票しました！", NamedTextColor.DARK_GREEN)));
         if (sendTarget != null) {
             Inventory inv = sendTarget.getInventory();
 
